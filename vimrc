@@ -25,7 +25,6 @@ Plug 'Konfekt/FastFold'
 Plug 'Shougo/vimshell'
 Plug 'plasticboy/vim-markdown', {'for': 'markdown'}
 Plug 'kannokanno/previm', {'for': 'markdown'}
-Plug 'tpope/vim-fugitive'
 call plug#end()
 " vimplug Settings end ====================
 
@@ -181,7 +180,8 @@ let g:user_emmet_settings = {
 
 
 " syntastic Settings =========================
-let g:syntastic_python_checkers = ['pyflakes', 'pep8']
+" let g:syntastic_python_checkers = ['pyflakes', 'pep8']
+let g:syntastic_python_checkers = ['pyflakes']
 " syntastic Settings End =====================
 
 

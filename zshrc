@@ -6,6 +6,10 @@ typeset -xT SUDO_PATH sudo_path
 typeset -U sudo_path
 sudo_path=({/usr/local,/usr,}/sbin(N-/))
 
+# pyenv
+export PYENV_ROOT=/usr/local/var/pyenv
+if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
+
 # for zsh-completions
 autoload -Uz compinit
 compinit -u
@@ -30,6 +34,7 @@ setopt auto_cd
 
 alias ...='cd ../..'
 alias ....='cd ../../..'
+alias l='ls'
 alias ll='ls -l'
 alias la='ls -la'
 
