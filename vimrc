@@ -25,6 +25,10 @@ Plug 'Konfekt/FastFold'
 Plug 'Shougo/vimshell'
 Plug 'plasticboy/vim-markdown', {'for': 'markdown'}
 Plug 'kannokanno/previm', {'for': 'markdown'}
+Plug 'hynek/vim-python-pep8-indent', {'for': 'python'}
+Plug 'itchyny/lightline.vim'
+Plug 'tomtom/tcomment_vim'
+Plug 'https://github.com/tpope/vim-fugitive.git'
 call plug#end()
 " vimplug Settings end ====================
 
@@ -32,6 +36,8 @@ call plug#end()
 " Basic Settings ==========================
 
 filetype off
+
+autocmd!
 
 " iTerm settings
 let g:hybrid_use_iTerm_colors = 1
@@ -51,11 +57,11 @@ set matchpairs& matchpairs+=<:>
 set smarttab
 set grepformat=%f:%l:%m,%f,%l%m,%f\ \ %l%m,%f
 set grepprg=grep\ -nh
-nnoremap <ESC><ESC> :nohlsearch<CR>
+nnoremap <silent><ESC><ESC> :nohlsearch<CR>
 set clipboard=unnamed,autoselect
-set ruler           " Show cursor position to right bottom
-set cursorline      " Change bgcolor of current line
-" set cursorcolumn    " Change bgcolor of current column
+set ruler
+set cursorline
+" set cursorcolumn
 set laststatus=2    " show bottom status line always
 set mouse=a
 set wildmenu wildmode=list:full
@@ -68,7 +74,7 @@ set expandtab
 let g:marching_backend = "sync_clang_command"
 set ambiwidth=double
 set backspace=indent,eol,start
-au BufRead,BufNewFile *.md set filetype=markdown
+" autocmd BufRead,BufNewFile *.md set filetype=markdown
 
 nnoremap j gj
 nnoremap k gk
@@ -143,7 +149,7 @@ inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+" autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
 " Enable heavy omni completion.
@@ -167,6 +173,7 @@ let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
 
 " NERDTree Settings =========================
 nnoremap <silent><C-e> :NERDTreeToggle<CR>
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 " NERDTree Settings End =====================
 
 
@@ -180,8 +187,7 @@ let g:user_emmet_settings = {
 
 
 " syntastic Settings =========================
-" let g:syntastic_python_checkers = ['pyflakes', 'pep8']
-let g:syntastic_python_checkers = ['pyflakes']
+let g:syntastic_python_checkers = ['pyflakes', 'pep8']
 " syntastic Settings End =====================
 
 
@@ -217,9 +223,70 @@ nnoremap <expr><silent> <C-c> quickrun#is_running() ? quickrun#sweep_sessions() 
 
 " PreVim Settings ===========================
 augroup PrevimSettings
-    autocmd!
     autocmd BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} set filetype=markdown
 augroup END
 
 let g:previm_open_cmd = 'open -a "Google Chrome"'
 " PreVim Settings end =======================
+
+" flake8-vim Settings =======================
+" let g:PyFlakeOnWrite = 1
+" let g:PyFlakeSigns = 1 
+" let g:PyFlakeSignStart = 1
+" let g:PyFlakeForcePyVersion = 3
+" flake8-vim Settings end ===================
+
+" lightline settings ========================
+set noshowmode
+let g:lightline = {
+    \ 'colorscheme': 'wombat',
+    \ 'active': {
+    \   'left': [ [ 'mode', 'paste' ],
+    \             [ 'fugitive', 'filename' ] ]
+    \ },
+    \ 'component_function': {
+    \   'fugitive': 'LightLineFugitive',
+    \   'readonly': 'LightLineReadonly',
+    \   'modified': 'LightLineModified',
+    \   'filename': 'LightLineFilename'
+    \ },
+    \ 'separator': { 'left': "\u2b80", 'right': "\u2b82" },
+    \ 'subseparator': { 'left': "\u2b81", 'right': "\u2b83" }
+    \ }
+
+function! LightLineModified()
+  if &filetype == "help"
+    return ""
+  elseif &modified
+    return "+"
+  elseif &modifiable
+    return ""
+  else
+    return ""
+  endif
+endfunction
+
+function! LightLineReadonly()
+  if &filetype == "help"
+    return ""
+  elseif &readonly
+    return "\u2b64"
+  else
+    return ""
+  endif
+endfunction
+
+function! LightLineFugitive()
+  if exists("*fugitive#head")
+    let branch = fugitive#head()
+    return branch !=# '' ? "\u2b60 ".branch : ''
+  endif
+  return ''
+endfunction
+
+function! LightLineFilename()
+  return ('' != LightLineReadonly() ? LightLineReadonly() . ' ' : '') .
+       \ ('' != expand('%:t') ? expand('%:t') : '[No Name]') .
+       \ ('' != LightLineModified() ? ' ' . LightLineModified() : '')
+endfunction
+" light line settings end ===================

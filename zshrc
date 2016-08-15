@@ -42,6 +42,10 @@ alias ts='tmux ls'
 alias ta='tmux attach -t'
 alias tk='tmux kill-session'
 
+alias wifirestart='networksetup -setairportpower en0 off;networksetup -setairportpower en0 on'
+alias wifioff='networksetup -setairportpower en0 off'
+alias wifion='networksetup -setairportpower en0 on'
+
 autoload -U colors; colors  # coloring prompt
 # user
 tmp_prompt="%F{cyan}[%n@%D{%m/%d %T}]%f "
