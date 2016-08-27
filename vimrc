@@ -28,7 +28,6 @@ Plug 'kannokanno/previm', {'for': 'markdown'}
 Plug 'hynek/vim-python-pep8-indent', {'for': 'python'}
 Plug 'itchyny/lightline.vim'
 Plug 'tomtom/tcomment_vim'
-Plug 'https://github.com/tpope/vim-fugitive.git'
 call plug#end()
 " vimplug Settings end ====================
 
@@ -63,7 +62,7 @@ set ruler
 set cursorline
 " set cursorcolumn
 set laststatus=2    " show bottom status line always
-set mouse=a
+" set mouse=a
 set wildmenu wildmode=list:full
 
 " Tab width Settings
