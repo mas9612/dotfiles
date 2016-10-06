@@ -73,6 +73,8 @@ let g:marching_backend = "sync_clang_command"
 set ambiwidth=double
 set backspace=indent,eol,start
 set tags=./tags;
+set encoding=utf-8
+set fileencodings=iso-2022-jp,euc-jp,sjis,utf-8
 
 nnoremap j gj
 nnoremap k gk
