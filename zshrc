@@ -38,6 +38,8 @@ alias l='ls'
 alias ll='ls -l'
 alias la='ls -la'
 
+alias sed='gsed'
+
 alias ts='tmux ls'
 alias ta='tmux attach -t'
 alias tk='tmux kill-session'
