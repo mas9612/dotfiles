@@ -28,6 +28,7 @@ Plug 'kannokanno/previm', {'for': 'markdown'}
 Plug 'hynek/vim-python-pep8-indent', {'for': 'python'}
 Plug 'itchyny/lightline.vim'
 Plug 'tomtom/tcomment_vim'
+Plug 'szw/vim-tags'
 call plug#end()
 " vimplug Settings end ====================
 
@@ -60,9 +61,7 @@ nnoremap <silent><ESC><ESC> :nohlsearch<CR>
 set clipboard=unnamed,autoselect
 set ruler
 set cursorline
-" set cursorcolumn
 set laststatus=2    " show bottom status line always
-" set mouse=a
 set wildmenu wildmode=list:full
 
 " Tab width Settings
@@ -73,10 +72,13 @@ set expandtab
 let g:marching_backend = "sync_clang_command"
 set ambiwidth=double
 set backspace=indent,eol,start
-" autocmd BufRead,BufNewFile *.md set filetype=markdown
+set tags=./tags;
 
 nnoremap j gj
 nnoremap k gk
+
+" disable expandtab in Makefile
+autocmd FileType make setlocal noexpandtab
 
 " Coffee Script Settings
 " au BufRead,BufNewFile,BufReadPre *.coffee set filetype=coffee
@@ -89,6 +91,17 @@ filetype indent on
 syntax on
 
 " Basic Settings End =======================
+
+" Template File setting ==============================
+autocmd BufNewFile *.ly 0r $HOME/.vim/template/lilypond.txt
+autocmd BufNewFile *.py 0r $HOME/.vim/template/python.txt
+" Template File setting end ==========================
+
+" lilypond settings ==================================
+filetype off
+set runtimepath+=/usr/local/share/lilypond/2.18.2/vim/
+filetype on
+" lilypond settings end ==============================
 
 
 " NeoComplete Settings ===============================
@@ -289,3 +302,7 @@ function! LightLineFilename()
        \ ('' != LightLineModified() ? ' ' . LightLineModified() : '')
 endfunction
 " light line settings end ===================
+
+" vim-tags settings =========================
+let g:vim_tags_ctags_binary = "/usr/local/bin/ctags"
+" vim-tags settings =========================
