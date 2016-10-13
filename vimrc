@@ -79,8 +79,19 @@ set fileencodings=iso-2022-jp,euc-jp,sjis,utf-8
 nnoremap j gj
 nnoremap k gk
 
+nnoremap <C-]> g<C-]>
+
 " disable expandtab in Makefile
 autocmd FileType make setlocal noexpandtab
+
+" remove trailing space
+function! s:remove_space()
+    let cursor = getpos(".")
+    %s/\s\+$//ge
+    call setpos(".", cursor)
+    unlet cursor
+endfunction
+autocmd BufWritePre * call <SID>remove_space()
 
 " Coffee Script Settings
 " au BufRead,BufNewFile,BufReadPre *.coffee set filetype=coffee
@@ -245,7 +256,7 @@ let g:previm_open_cmd = 'open -a "Google Chrome"'
 
 " flake8-vim Settings =======================
 " let g:PyFlakeOnWrite = 1
-" let g:PyFlakeSigns = 1 
+" let g:PyFlakeSigns = 1
 " let g:PyFlakeSignStart = 1
 " let g:PyFlakeForcePyVersion = 3
 " flake8-vim Settings end ===================
