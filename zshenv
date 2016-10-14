@@ -10,7 +10,3 @@ fpath=(/usr/local/share/zsh-completions $fpath)
 
 # set Java encoding to utf-8
 export JAVA_TOOL_OPTIONS=-Dfile.encoding=UTF-8
-
-# NEologd dict path (for mecab)
-# set NEOLOGD=`mecab-config --dicdir`"/mecab-ipadic-neologd"
-export NEOLOGD=`mecab-config --dicdir`"/mecab-ipadic-neologd"
