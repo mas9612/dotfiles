@@ -2,6 +2,9 @@
 path=(/usr/local/bin(N-/) /usr/local/git/bin(N-/) /usr/local/sbin(N-/) /usr/local/bin/run(N-/) ${path})
 fpath=(/usr/local/share/zsh-completions $fpath)
 
+# boost path settings
+BOOST_ROOT=(/usr/local/Cellar/boost/1.62.0)
+
 # pyenv
 # export PYENV_ROOT=/usr/local/var/pyenv
 # if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
