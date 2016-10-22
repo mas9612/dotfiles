@@ -74,7 +74,7 @@ set ambiwidth=double
 set backspace=indent,eol,start
 set tags=./tags;
 set encoding=utf-8
-set fileencodings=iso-2022-jp,euc-jp,sjis,utf-8
+set fileencodings=utf-8,iso-2022-jp,euc-jp,sjis
 
 nnoremap j gj
 nnoremap k gk
@@ -217,12 +217,6 @@ let g:syntastic_python_checkers = ['pyflakes', 'pep8']
 
 
 " Tex settings ================================
-augroup filetype
-  autocmd!
-  " tex file (I always use latex)
-  autocmd BufRead,BufNewFile *.tex set filetype=tex
-augroup END
-
 " disable the conceal function
 let g:tex_conceal=''
 " Tex settings end ============================
@@ -247,10 +241,6 @@ nnoremap <expr><silent> <C-c> quickrun#is_running() ? quickrun#sweep_sessions() 
 
 
 " PreVim Settings ===========================
-augroup PrevimSettings
-    autocmd BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} set filetype=markdown
-augroup END
-
 let g:previm_open_cmd = 'open -a "Google Chrome"'
 " PreVim Settings end =======================
 
@@ -317,5 +307,6 @@ endfunction
 " light line settings end ===================
 
 " vim-tags settings =========================
+let g:vim_tags_auto_generate = 1
 let g:vim_tags_ctags_binary = "/usr/local/bin/ctags"
 " vim-tags settings =========================
