@@ -1,4 +1,3 @@
-" vimplug Settings ========================
 call plug#begin()
 Plug 'Shougo/neosnippet.vim'
 Plug 'Shougo/neosnippet-snippets'
@@ -30,21 +29,19 @@ Plug 'itchyny/lightline.vim'
 Plug 'tomtom/tcomment_vim'
 Plug 'szw/vim-tags'
 call plug#end()
-" vimplug Settings end ====================
 
-
-" Basic Settings ==========================
 
 filetype off
 
-autocmd!
+augroup vimrc
+    autocmd!
+augroup END
 
 " iTerm settings
 let g:hybrid_use_iTerm_colors = 1
 set background=dark
 colorscheme hybrid
 
-" set autoindent
 set cindent
 set backupdir=$HOME/.vimbackup
 set directory=$HOME/.vimbackup
@@ -82,7 +79,7 @@ nnoremap k gk
 nnoremap <C-]> g<C-]>
 
 " disable expandtab in Makefile
-autocmd FileType make setlocal noexpandtab
+autocmd vimrc FileType make setlocal noexpandtab
 
 " remove trailing space
 function! s:remove_space()
@@ -91,29 +88,16 @@ function! s:remove_space()
     call setpos(".", cursor)
     unlet cursor
 endfunction
-autocmd BufWritePre * call <SID>remove_space()
+autocmd vimrc BufWritePre * call <SID>remove_space()
 
-" Coffee Script Settings
-" au BufRead,BufNewFile,BufReadPre *.coffee set filetype=coffee
-" autocmd FileType coffee setlocal sw=2 sts=2 ts=2 et
-" autocmd BufWritePost *.coffee silent make!
-" autocmd QuickFixCmdPost * nested cwindow | redraw!
-" nnoremap <silent> <C-C> :CoffeeCompile vert <CR><C-w>h
-
-filetype indent on
-syntax on
-
-" Basic Settings End =======================
 
 " Template File setting ==============================
-autocmd BufNewFile *.ly 0r $HOME/.vim/template/lilypond.txt
-autocmd BufNewFile *.py 0r $HOME/.vim/template/python.txt
+autocmd vimrc BufNewFile *.ly 0r $HOME/.vim/template/lilypond.txt
+autocmd vimrc BufNewFile *.py 0r $HOME/.vim/template/python.txt
 " Template File setting end ==========================
 
 " lilypond settings ==================================
-filetype off
 set runtimepath+=/usr/local/share/lilypond/2.18.2/vim/
-filetype on
 " lilypond settings end ==============================
 
 
@@ -171,11 +155,14 @@ inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
 "inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<C-x>\<C-u>"
 
 " Enable omni completion.
-autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-" autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+augroup neocomplete
+    autocmd!
+    autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+    autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+    autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+    " autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+    autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+augroup END
 
 " Enable heavy omni completion.
 if !exists('g:neocomplete#sources#omni#input_patterns')
@@ -198,7 +185,7 @@ let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
 
 " NERDTree Settings =========================
 nnoremap <silent><C-e> :NERDTreeToggle<CR>
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+autocmd vimrc bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 " NERDTree Settings End =====================
 
 
@@ -244,12 +231,6 @@ nnoremap <expr><silent> <C-c> quickrun#is_running() ? quickrun#sweep_sessions() 
 let g:previm_open_cmd = 'open -a "Google Chrome"'
 " PreVim Settings end =======================
 
-" flake8-vim Settings =======================
-" let g:PyFlakeOnWrite = 1
-" let g:PyFlakeSigns = 1
-" let g:PyFlakeSignStart = 1
-" let g:PyFlakeForcePyVersion = 3
-" flake8-vim Settings end ===================
 
 " lightline settings ========================
 set noshowmode
@@ -310,3 +291,7 @@ endfunction
 let g:vim_tags_auto_generate = 1
 let g:vim_tags_ctags_binary = "/usr/local/bin/ctags"
 " vim-tags settings =========================
+
+
+filetype indent on
+syntax on
