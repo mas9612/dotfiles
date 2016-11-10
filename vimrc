@@ -6,7 +6,7 @@ Plug 'ctrlpvim/ctrlp.vim'
 Plug 'flazz/vim-colorschemes'
 Plug 'Shougo/neocomplete.vim'
 Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
-Plug 'mattn/emmet-vim'
+Plug 'mattn/emmet-vim', {'for': ['htmldjango', 'html', 'css']}
 Plug 'thinca/vim-quickrun'
 Plug 'tpope/vim-surround'
 Plug 'othree/html5.vim', {'for': 'html'}
@@ -28,6 +28,8 @@ Plug 'hynek/vim-python-pep8-indent', {'for': 'python'}
 Plug 'itchyny/lightline.vim'
 Plug 'tomtom/tcomment_vim'
 Plug 'szw/vim-tags'
+Plug 'vim-jp/vim-cpp', {'for': ['c', 'cpp']}
+Plug 'osyo-manga/vim-marching', {'for': ['c', 'cpp']}
 call plug#end()
 
 
@@ -42,40 +44,46 @@ let g:hybrid_use_iTerm_colors = 1
 set background=dark
 colorscheme hybrid
 
-set cindent
+set encoding=utf-8
+set fileencodings=utf-8,iso-2022-jp,euc-jp,sjis
+
 set backupdir=$HOME/.vimbackup
 set directory=$HOME/.vimbackup
 set hidden
+
+set smartcase
 set incsearch
 set hlsearch
+
+set tabstop=4
+set shiftwidth=4
+set cindent
+set smarttab
+set expandtab
+set ambiwidth=double
+set backspace=indent,eol,start
+
+set list
 set number
 set showmatch
 set matchpairs& matchpairs+=<:>
-set smarttab
-set grepformat=%f:%l:%m,%f,%l%m,%f\ \ %l%m,%f
+set grepformat=%f:%l:%m,%f,%l%m,%f\ \ %l%m
 set grepprg=grep\ -nh
-nnoremap <silent><ESC><ESC> :nohlsearch<CR>
 set clipboard=unnamed,autoselect
 set ruler
 set cursorline
 set laststatus=2    " show bottom status line always
 set wildmenu wildmode=list:full
 
-" Tab width Settings
-set tabstop=4
-set shiftwidth=4
+set visualbell t_vb=
+set noerrorbells
 
-set expandtab
-let g:marching_backend = "sync_clang_command"
-set ambiwidth=double
-set backspace=indent,eol,start
 set tags=./tags;
-set encoding=utf-8
-set fileencodings=utf-8,iso-2022-jp,euc-jp,sjis
 
 nnoremap j gj
 nnoremap k gk
-
+nnoremap <silent><ESC><ESC> :nohlsearch<CR>
+" for ctags
 nnoremap <C-]> g<C-]>
 
 " disable expandtab in Makefile
@@ -91,14 +99,30 @@ endfunction
 autocmd vimrc BufWritePre * call <SID>remove_space()
 
 
-" Template File setting ==============================
+" Filetype settings
+autocmd vimrc BufNewFile,BufRead *.html set filetype=htmldjango
+
+
+" Template File setting
 autocmd vimrc BufNewFile *.ly 0r $HOME/.vim/template/lilypond.txt
 autocmd vimrc BufNewFile *.py 0r $HOME/.vim/template/python.txt
-" Template File setting end ==========================
 
-" lilypond settings ==================================
+
+" lilypond settings
 set runtimepath+=/usr/local/share/lilypond/2.18.2/vim/
-" lilypond settings end ==============================
+
+
+" vim-marching settings
+let g:marching_clang_command = "/usr/bin/clang"
+let g:marching#clang_command#options = {
+\   "cpp" : "-std=gnu++1y"
+\}
+let g:marching_include_paths = [
+\   "/usr/include",
+\   "/usr/local/include",
+\   "/usr/local/Cellar/boost/1.62.0/include"
+\]
+let g:marching_enable_neocomplete = 1
 
 
 " NeoComplete Settings ===============================
@@ -160,7 +184,6 @@ augroup neocomplete
     autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
     autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
     autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-    " autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
     autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 augroup END
 
@@ -175,18 +198,31 @@ endif
 " For perlomni.vim setting.
 " https://github.com/c9s/perlomni.vim
 let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
-" NeoComplete Settings End ===========================
+
+if !exists('g:neocomplete#force_omni_input_patterns')
+    let g:neocomplete#force_omni_input_patterns = {}
+endif
+let g:neocomplete#force_omni_input_patterns.cpp =
+        \ '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
 
 
-" neocomplete-php Settings ==================
-" let g:neocomplete_php_locale = 'ja'
-" neocomplete-php Settings End ==============
+" jedi-vim
+augroup jedi
+    autocmd!
+    autocmd FileType python setlocal completeopt-=preview
+    autocmd FileType python setlocal omnifunc=jedi#completions
+augroup END
+
+
+" integrate jedi-vim and neocomplete
+let g:jedi#completions_enabled = 0
+let g:jedi#auto_vim_configuration = 0
+let g:neocomplete#force_omni_input_patterns.python = '\h\w*\|[^. \t]\.\w*'
 
 
 " NERDTree Settings =========================
 nnoremap <silent><C-e> :NERDTreeToggle<CR>
 autocmd vimrc bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-" NERDTree Settings End =====================
 
 
 " emmet-vim Settings ========================
@@ -195,18 +231,15 @@ let g:user_emmet_settings = {
 			\ 'lang' : 'ja'
 			\ }
 			\}
-" emmet -vim Settings End ===================
 
 
 " syntastic Settings =========================
 let g:syntastic_python_checkers = ['pyflakes', 'pep8']
-" syntastic Settings End =====================
 
 
 " Tex settings ================================
 " disable the conceal function
 let g:tex_conceal=''
-" Tex settings end ============================
 
 
 " vim-quickrun settings ========================
@@ -224,12 +257,10 @@ let g:quickrun_config = {
 
 " Press <C-c> to stop QuickRun
 nnoremap <expr><silent> <C-c> quickrun#is_running() ? quickrun#sweep_sessions() : "\<C-c>"
-" vim-quickrun settings end ====================
 
 
 " PreVim Settings ===========================
 let g:previm_open_cmd = 'open -a "Google Chrome"'
-" PreVim Settings end =======================
 
 
 " lightline settings ========================
@@ -285,12 +316,10 @@ function! LightLineFilename()
        \ ('' != expand('%:t') ? expand('%:t') : '[No Name]') .
        \ ('' != LightLineModified() ? ' ' . LightLineModified() : '')
 endfunction
-" light line settings end ===================
 
 " vim-tags settings =========================
 let g:vim_tags_auto_generate = 1
 let g:vim_tags_ctags_binary = "/usr/local/bin/ctags"
-" vim-tags settings =========================
 
 
 filetype indent on
