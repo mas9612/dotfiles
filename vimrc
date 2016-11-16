@@ -22,6 +22,7 @@ Plug 'osyo-manga/shabadou.vim'
 Plug 'Shougo/vimproc.vim', {'do': 'make'}
 Plug 'Konfekt/FastFold'
 Plug 'Shougo/vimshell'
+Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown', {'for': 'markdown'}
 Plug 'kannokanno/previm', {'for': 'markdown'}
 Plug 'hynek/vim-python-pep8-indent', {'for': 'python'}
@@ -115,7 +116,7 @@ set runtimepath+=/usr/local/share/lilypond/2.18.2/vim/
 " vim-marching settings
 let g:marching_clang_command = "/usr/bin/clang"
 let g:marching#clang_command#options = {
-\   "cpp" : "-std=gnu++1y"
+\   "cpp" : " -std=c++11 -stdlib=libc++"
 \}
 let g:marching_include_paths = [
 \   "/usr/include",
@@ -234,6 +235,19 @@ let g:user_emmet_settings = {
 
 
 " syntastic Settings =========================
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+" syntastic checkers
+" let g:syntastic_<filetype>_checkers = ['<checker-name>']
+let g:syntastic_cpp_compiler = 'clang++'
+let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
 let g:syntastic_python_checkers = ['pyflakes', 'pep8']
 
 
@@ -252,6 +266,10 @@ let g:quickrun_config = {
 \       'outputter/error/error' : 'quickfix',
 \       "outputter/buffer/split" : ":botright 10sp",
 \       "outputter/buffer/close_on_empty" : 1,
+\   },
+\   "cpp" : {
+\       "command": "c++",
+\       "cmdopt": "--std=c++11 -stdlib=libc++",
 \   }
 \}
 
@@ -317,9 +335,15 @@ function! LightLineFilename()
        \ ('' != LightLineModified() ? ' ' . LightLineModified() : '')
 endfunction
 
+
 " vim-tags settings =========================
 let g:vim_tags_auto_generate = 1
 let g:vim_tags_ctags_binary = "/usr/local/bin/ctags"
+
+
+" vim-markdown settings =====================
+let g:vim_markdown_folding_disabled = 1
+let g:vim_markdown_math = 1
 
 
 filetype indent on
