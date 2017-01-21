@@ -81,6 +81,9 @@ set noerrorbells
 
 set tags=./tags;
 
+abbr #b /**************************************************
+abbr #e **************************************************/
+
 nnoremap j gj
 nnoremap k gk
 nnoremap <silent><ESC><ESC> :nohlsearch<CR>
@@ -121,7 +124,6 @@ let g:marching#clang_command#options = {
 let g:marching_include_paths = [
 \   "/usr/include",
 \   "/usr/local/include",
-\   "/usr/local/Cellar/boost/1.62.0/include"
 \]
 let g:marching_enable_neocomplete = 1
 
@@ -133,16 +135,21 @@ let g:acp_enableAtStartup = 0
 let g:neocomplete#enable_at_startup = 1
 " Use smartcase.
 let g:neocomplete#enable_smart_case = 1
+
+let g:neocomplete#use_vimproc = 1
+
 " Set minimum syntax keyword length.
 let g:neocomplete#sources#syntax#min_keyword_length = 3
 let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
+
+let g:neocomplete#enable_refresh_always = 1
 
 " Define dictionary.
 let g:neocomplete#sources#dictionary#dictionaries = {
     \ 'default' : '',
     \ 'vimshell' : $HOME.'/.vimshell_hist',
     \ 'scheme' : $HOME.'/.gosh_completions'
-        \ }
+\}
 
 " Define keyword.
 if !exists('g:neocomplete#keyword_patterns')
@@ -228,10 +235,10 @@ autocmd vimrc bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTr
 
 " emmet-vim Settings ========================
 let g:user_emmet_settings = {
-			\ 'variables': {
-			\ 'lang' : 'ja'
-			\ }
-			\}
+    \ 'variables': {
+    \ 'lang' : 'ja'
+    \ }
+\}
 
 
 " syntastic Settings =========================
@@ -248,6 +255,7 @@ let g:syntastic_check_on_wq = 0
 " let g:syntastic_<filetype>_checkers = ['<checker-name>']
 let g:syntastic_cpp_compiler = 'clang++'
 let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
+let g:syntastic_cpp_include_dirs = ['/usr/include', '/usr/local/include']
 let g:syntastic_python_checkers = ['pyflakes', 'pep8']
 
 
@@ -297,7 +305,7 @@ let g:lightline = {
     \ },
     \ 'separator': { 'left': "\u2b80", 'right': "\u2b82" },
     \ 'subseparator': { 'left': "\u2b81", 'right': "\u2b83" }
-    \ }
+\}
 
 function! LightLineModified()
   if &filetype == "help"
@@ -344,6 +352,11 @@ let g:vim_tags_ctags_binary = "/usr/local/bin/ctags"
 " vim-markdown settings =====================
 let g:vim_markdown_folding_disabled = 1
 let g:vim_markdown_math = 1
+
+
+" CtrlP settings ============================
+autocmd vimrc BufNew * CtrlPClearCache
+let g:ctrlp_show_hidden = 1
 
 
 filetype indent on
