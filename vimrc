@@ -31,6 +31,7 @@ Plug 'tomtom/tcomment_vim'
 Plug 'szw/vim-tags'
 Plug 'vim-jp/vim-cpp', {'for': ['c', 'cpp']}
 Plug 'osyo-manga/vim-marching', {'for': ['c', 'cpp']}
+Plug 'kchmck/vim-coffee-script'
 call plug#end()
 
 
@@ -63,6 +64,9 @@ set smarttab
 set expandtab
 set ambiwidth=double
 set backspace=indent,eol,start
+
+" indent for coffee script
+autocmd vimrc FileType coffee setlocal shiftwidth=2 tabstop=2
 
 set list
 set number
@@ -105,6 +109,7 @@ autocmd vimrc BufWritePre * call <SID>remove_space()
 
 " Filetype settings
 autocmd vimrc BufNewFile,BufRead *.html set filetype=htmldjango
+autocmd vimrc BufNewFile,BufRead *.coffee set filetype=coffee
 
 
 " Template File setting
@@ -357,6 +362,10 @@ let g:vim_markdown_math = 1
 " CtrlP settings ============================
 autocmd vimrc BufNew * CtrlPClearCache
 let g:ctrlp_show_hidden = 1
+
+" vim-coffee-script settings ================
+" auto compile after save
+" autocmd vimrc BufWritePost *.coffee silent make!
 
 
 filetype indent on
