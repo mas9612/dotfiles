@@ -31,7 +31,7 @@ Plug 'tomtom/tcomment_vim'
 Plug 'szw/vim-tags'
 Plug 'vim-jp/vim-cpp', {'for': ['c', 'cpp']}
 Plug 'osyo-manga/vim-marching', {'for': ['c', 'cpp']}
-Plug 'kchmck/vim-coffee-script'
+Plug 'kchmck/vim-coffee-script', {'for': 'coffee'}
 call plug#end()
 
 
@@ -53,6 +53,7 @@ set backupdir=$HOME/.vimbackup
 set directory=$HOME/.vimbackup
 set hidden
 
+set ignorecase
 set smartcase
 set incsearch
 set hlsearch
@@ -67,6 +68,9 @@ set backspace=indent,eol,start
 
 " indent for coffee script
 autocmd vimrc FileType coffee setlocal shiftwidth=2 tabstop=2
+
+" indent for vim script
+autocmd vimrc FileType vim setlocal shiftwidth=2 tabstop=2
 
 set list
 set number
@@ -366,6 +370,7 @@ let g:ctrlp_show_hidden = 1
 " vim-coffee-script settings ================
 " auto compile after save
 " autocmd vimrc BufWritePost *.coffee silent make!
+" autocmd vimrc QuickFixCmdPost *.coffee nested cwindow | redraw!
 
 
 filetype indent on
