@@ -6,7 +6,7 @@ Plug 'ctrlpvim/ctrlp.vim'
 Plug 'flazz/vim-colorschemes'
 Plug 'Shougo/neocomplete.vim'
 Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
-Plug 'mattn/emmet-vim', {'for': ['htmldjango', 'html', 'css']}
+Plug 'mattn/emmet-vim', {'for': ['htmldjango', 'html', 'css', 'php']}
 Plug 'thinca/vim-quickrun'
 Plug 'tpope/vim-surround'
 Plug 'othree/html5.vim', {'for': 'html'}
@@ -109,6 +109,16 @@ function! s:remove_space()
     unlet cursor
 endfunction
 autocmd vimrc BufWritePre * call <SID>remove_space()
+
+" restore cursor position
+autocmd vimrc BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
+
+" use up/down key in command line mode
+cnoremap <C-p> <Up>
+cnoremap <C-n> <Down>
+
+" close help with 'q' key
+autocmd vimrc FileType help nnoremap <buffer> <silent>q :helpc<CR>
 
 
 " Filetype settings
