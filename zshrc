@@ -19,7 +19,7 @@ autoload history-search-end
 zle -N history-beginning-search-backward-end history-search-end
 zle -N history-beginning-search-forward-end history-search-end
 bindkey "^P" history-beginning-search-backward-end
-bindkey "^N" history-beginning-search-forward-end 
+bindkey "^N" history-beginning-search-forward-end
 
 export EDITOR=vim           # set editor to vim
 export LANG=ja_JP.UTF-8     # set char code to utf-8
@@ -42,7 +42,6 @@ alias sed='gsed'
 
 alias ts='tmux ls'
 alias ta='tmux attach -t'
-alias tk='tmux kill-session'
 
 alias wifirestart='networksetup -setairportpower en0 off;networksetup -setairportpower en0 on'
 alias wifioff='networksetup -setairportpower en0 off'
