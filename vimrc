@@ -36,6 +36,7 @@ call plug#end()
 
 
 filetype off
+filetype plugin indent off
 
 augroup vimrc
     autocmd!
@@ -92,11 +93,19 @@ set tags=./tags;
 abbr #b /**************************************************
 abbr #e **************************************************/
 
-nnoremap j gj
-nnoremap k gk
+" nnoremap j gj
+" nnoremap k gk
 nnoremap <silent><ESC><ESC> :nohlsearch<CR>
 " for ctags
 nnoremap <C-]> g<C-]>
+
+" move buffer
+nnoremap <silent>[b :bprevious<CR>
+nnoremap <silent>]b :bnext<CR>
+nnoremap <silent>[B :bfirst<CR>
+nnoremap <silent>]B :last<CR>
+
+cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
 
 " disable expandtab in Makefile
 autocmd vimrc FileType make setlocal noexpandtab
@@ -383,5 +392,5 @@ let g:ctrlp_show_hidden = 1
 " autocmd vimrc QuickFixCmdPost *.coffee nested cwindow | redraw!
 
 
-filetype indent on
+filetype plugin indent on
 syntax on
