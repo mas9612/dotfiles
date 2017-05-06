@@ -79,7 +79,7 @@ set showmatch
 set matchpairs& matchpairs+=<:>
 set grepformat=%f:%l:%m,%f,%l%m,%f\ \ %l%m
 set grepprg=grep\ -nh
-set clipboard=unnamed,autoselect
+" set clipboard=unnamed,autoselect
 set ruler
 set cursorline
 set laststatus=2    " show bottom status line always
@@ -393,4 +393,5 @@ let g:ctrlp_show_hidden = 1
 
 
 filetype plugin indent on
+runtime macros/matchit.vim
 syntax on
