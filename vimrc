@@ -112,7 +112,7 @@ autocmd vimrc FileType make setlocal noexpandtab
 
 " remove trailing space
 function! s:remove_space()
-  if exists('s:vimrc_dont_remove_trailing_spaces')
+  if &filetype ==? 'markdown'
     return
   endif
 
@@ -121,7 +121,6 @@ function! s:remove_space()
   call setpos(".", cursor)
   unlet cursor
 endfunction
-autocmd vimrc FileType markdown let s:vimrc_dont_remove_trailing_spaces = 0
 autocmd vimrc BufWritePre * call <SID>remove_space()
 
 " restore cursor position
