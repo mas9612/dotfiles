@@ -59,6 +59,7 @@ set smartcase
 set incsearch
 set hlsearch
 
+set shiftround
 set tabstop=4
 set shiftwidth=4
 set cindent
