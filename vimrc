@@ -32,6 +32,7 @@ Plug 'szw/vim-tags'
 Plug 'vim-jp/vim-cpp', {'for': ['c', 'cpp']}
 Plug 'osyo-manga/vim-marching', {'for': ['c', 'cpp']}
 Plug 'kchmck/vim-coffee-script', {'for': 'coffee'}
+Plug 'mas9612/mdslide.vim', {'for': 'markdown'}
 call plug#end()
 
 
@@ -73,6 +74,9 @@ autocmd vimrc FileType coffee setlocal shiftwidth=2 tabstop=2
 
 " indent for vim script
 autocmd vimrc FileType vim setlocal shiftwidth=2 tabstop=2
+
+" indent for json
+autocmd vimrc FileType json setlocal shiftwidth=2 tabstop=2
 
 set list
 set number
