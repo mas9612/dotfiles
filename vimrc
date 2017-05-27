@@ -69,15 +69,6 @@ set expandtab
 set ambiwidth=double
 set backspace=indent,eol,start
 
-" indent for coffee script
-autocmd vimrc FileType coffee setlocal shiftwidth=2 tabstop=2
-
-" indent for vim script
-autocmd vimrc FileType vim setlocal shiftwidth=2 tabstop=2
-
-" indent for json
-autocmd vimrc FileType json setlocal shiftwidth=2 tabstop=2
-
 set list
 set number
 set showmatch
@@ -112,8 +103,14 @@ nnoremap <silent>]B :last<CR>
 
 cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
 
-" disable expandtab in Makefile
+
+" Filetype settings
 autocmd vimrc FileType make setlocal noexpandtab
+autocmd vimrc FileType coffee setlocal shiftwidth=2 tabstop=2
+autocmd vimrc FileType vim setlocal shiftwidth=2 tabstop=2
+autocmd vimrc FileType json setlocal shiftwidth=2 tabstop=2
+autocmd vimrc FileType lilypond set runtimepath+=/usr/local/share/lilypond/2.18.2/vim/
+
 
 " remove trailing space
 function! s:remove_space()
@@ -147,10 +144,6 @@ autocmd vimrc BufNewFile,BufRead *.coffee set filetype=coffee
 " Template File setting
 autocmd vimrc BufNewFile *.ly 0r $HOME/.vim/template/lilypond.txt
 autocmd vimrc BufNewFile *.py 0r $HOME/.vim/template/python.txt
-
-
-" lilypond settings
-set runtimepath+=/usr/local/share/lilypond/2.18.2/vim/
 
 
 " vim-marching settings
