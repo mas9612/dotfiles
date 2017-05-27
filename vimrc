@@ -86,9 +86,14 @@ set noerrorbells
 
 set tags=./tags;
 
+set diffopt=filler,vertical
+
+
 abbr #b /**************************************************
 abbr #e **************************************************/
 
+
+" remap ==================================================
 " nnoremap j gj
 " nnoremap k gk
 nnoremap <silent><ESC><ESC> :nohlsearch<CR>
