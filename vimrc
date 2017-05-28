@@ -83,7 +83,7 @@ set cursorline
 set laststatus=2    " show bottom status line always
 set wildmenu
 set wildmode=list:full
-set wildignore+=*.o
+set wildignore+=*.o,*.pyc
 
 set visualbell t_vb=
 set noerrorbells
@@ -417,7 +417,12 @@ let g:vim_markdown_math = 1
 
 " CtrlP settings ============================
 autocmd vimrc BufNew * CtrlPClearCache
+let g:ctrlp_use_caching = 1
 let g:ctrlp_show_hidden = 1
+let g:ctrlp_custom_ignore = {
+  \ 'dir': '\v[\/]\.git$',
+  \ 'file': '\v\.(o|pyc)$',
+  \ }
 
 " vim-coffee-script settings ================
 " auto compile after save
