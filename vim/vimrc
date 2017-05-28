@@ -19,7 +19,8 @@ Plug 'lervag/vimtex', {'for': 'tex'}
 Plug 'Shougo/unite.vim'
 Plug 'osyo-manga/unite-quickfix'
 Plug 'osyo-manga/shabadou.vim'
-Plug 'Shougo/vimproc.vim', {'do': 'make'}
+Plug 'Shougo/vimproc.vim'
+" Plug 'Shougo/vimproc.vim', {'do': 'make'}
 Plug 'Konfekt/FastFold'
 Plug 'Shougo/vimshell'
 Plug 'godlygeek/tabular'
