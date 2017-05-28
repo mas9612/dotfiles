@@ -19,8 +19,7 @@ Plug 'lervag/vimtex', {'for': 'tex'}
 Plug 'Shougo/unite.vim'
 Plug 'osyo-manga/unite-quickfix'
 Plug 'osyo-manga/shabadou.vim'
-Plug 'Shougo/vimproc.vim'
-" Plug 'Shougo/vimproc.vim', {'do': 'make'}
+Plug 'Shougo/vimproc.vim', {'do': 'make'}
 Plug 'Konfekt/FastFold'
 Plug 'Shougo/vimshell'
 Plug 'godlygeek/tabular'
@@ -328,19 +327,21 @@ let g:tex_conceal=''
 
 " vim-quickrun settings ========================
 let g:quickrun_config = {
-\   "_" : {
-\       "runner": "vimproc",
-\       "runner/vimproc/updatetime": 40,
-\       "outputter" : "error",
-\       "outputter/error/success" : "buffer",
-\       'outputter/error/error' : 'quickfix',
-\       "outputter/buffer/split" : ":botright 10sp",
-\       "outputter/buffer/close_on_empty" : 1,
-\   },
-\   "cpp" : {
-\       "command": "c++",
-\       "cmdopt": "--std=c++11 -stdlib=libc++",
-\   }
+  \ "_" : {
+  \   'runner': 'vimproc',
+  \   'runner/vimproc/updatetime': 50,
+  \   'outputter' : 'error',
+  \   'outputter/error/success' : 'buffer',
+  \   'outputter/error/error' : 'quickfix',
+  \   'outputter/buffer/split' : ':botright 10sp',
+  \   'outputter/buffer/close_on_empty' : 1,
+  \},
+  \ "cpp" : {
+  \   'command': 'c++',
+  \   'cmdopt': '--std=c++11 -stdlib=libc++',
+  \   'exec': '%c %o %s',
+  \   'args': '',
+  \}
 \}
 
 " Press <C-c> to stop QuickRun
