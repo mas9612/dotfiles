@@ -97,9 +97,18 @@ abbr #e **************************************************/
 
 
 " remap ==================================================
-" nnoremap j gj
-" nnoremap k gk
+nnoremap : ;
+vnoremap : ;
+nnoremap ; :
+vnoremap ; :
+
+nnoremap j gj
+nnoremap k gk
+nnoremap gj j
+nnoremap gk k
+
 nnoremap <silent><ESC><ESC> :nohlsearch<CR>
+
 " for ctags
 nnoremap <C-]> g<C-]>
 
@@ -117,6 +126,10 @@ nnoremap ]Q :<C-u>clast<CR>
 
 " expand '%%' to current directory in command line mode
 cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
+
+" use up/down key in command line mode
+cnoremap <C-p> <Up>
+cnoremap <C-n> <Down>
 
 
 " Filetype settings
@@ -147,10 +160,6 @@ autocmd vimrc BufWritePre * call <SID>remove_space()
 
 " restore cursor position
 autocmd vimrc BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
-
-" use up/down key in command line mode
-cnoremap <C-p> <Up>
-cnoremap <C-n> <Down>
 
 " close help with 'q' key
 autocmd vimrc FileType help nnoremap <buffer> <silent>q :helpc<CR>
