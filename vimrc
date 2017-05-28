@@ -109,6 +109,13 @@ nnoremap <silent>]b :bnext<CR>
 nnoremap <silent>[B :bfirst<CR>
 nnoremap <silent>]B :last<CR>
 
+" quickfix
+nnoremap [q :cprevious<CR>
+nnoremap ]q :cnext<CR>
+nnoremap [Q :<C-u>cfirst<CR>
+nnoremap ]Q :<C-u>clast<CR>
+
+" expand '%%' to current directory in command line mode
 cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
 
 
@@ -119,6 +126,10 @@ autocmd vimrc FileType coffee setlocal shiftwidth=2 tabstop=2
 autocmd vimrc FileType vim setlocal shiftwidth=2 tabstop=2
 autocmd vimrc FileType json setlocal shiftwidth=2 tabstop=2
 autocmd vimrc FileType lilypond set runtimepath+=/usr/local/share/lilypond/2.18.2/vim/
+
+
+" open QuickFix window automatically after use make or grep commands
+autocmd vimrc QuickFixCmdPost make,*grep* :cwindow
 
 
 " remove trailing space
