@@ -43,7 +43,7 @@ augroup vimrc
     autocmd!
 augroup END
 
-" iTerm settings
+" colorscheme settings
 let g:hybrid_use_iTerm_colors = 1
 set background=dark
 colorscheme hybrid
@@ -51,6 +51,8 @@ colorscheme hybrid
 set encoding=utf-8
 set fileencodings=utf-8,iso-2022-jp,euc-jp,sjis
 
+set backup
+set swapfile
 set backupdir=$HOME/.vimbackup
 set directory=$HOME/.vimbackup
 set hidden
@@ -79,7 +81,9 @@ set grepprg=grep\ -nh
 set ruler
 set cursorline
 set laststatus=2    " show bottom status line always
-set wildmenu wildmode=list:full
+set wildmenu
+set wildmode=list:full
+set wildignore+=*.o
 
 set visualbell t_vb=
 set noerrorbells
@@ -87,8 +91,6 @@ set noerrorbells
 set tags=./tags;
 
 set diffopt=filler,vertical
-
-set wildignore+=*.o
 
 
 abbr #b /**************************************************
