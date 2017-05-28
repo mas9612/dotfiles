@@ -140,6 +140,15 @@ autocmd vimrc FileType coffee setlocal shiftwidth=2 tabstop=2
 autocmd vimrc FileType vim setlocal shiftwidth=2 tabstop=2
 autocmd vimrc FileType json setlocal shiftwidth=2 tabstop=2
 autocmd vimrc FileType lilypond set runtimepath+=/usr/local/share/lilypond/2.18.2/vim/
+" close help with 'q' key
+autocmd vimrc FileType help nnoremap <buffer><silent>q :helpc<CR>
+" close QuickFix with 'q' key
+autocmd vimrc FileType qf nnoremap <buffer><silent>q :cclose<CR>
+
+
+" set filetype
+autocmd vimrc BufNewFile,BufRead *.html set filetype=htmldjango
+autocmd vimrc BufNewFile,BufRead *.coffee set filetype=coffee
 
 
 " open QuickFix window automatically after use make or grep commands
@@ -161,15 +170,6 @@ autocmd vimrc BufWritePre * call <SID>remove_space()
 
 " restore cursor position
 autocmd vimrc BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
-
-" close help with 'q' key
-autocmd vimrc FileType help nnoremap <buffer><silent>q :helpc<CR>
-autocmd vimrc FileType qf nnoremap <buffer><silent>q :cclose<CR>
-
-
-" Filetype settings
-autocmd vimrc BufNewFile,BufRead *.html set filetype=htmldjango
-autocmd vimrc BufNewFile,BufRead *.coffee set filetype=coffee
 
 
 " Template File setting
