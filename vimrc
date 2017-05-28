@@ -89,6 +89,8 @@ set tags=./tags;
 
 set diffopt=filler,vertical
 
+set wildignore+=*.o
+
 
 abbr #b /**************************************************
 abbr #e **************************************************/
