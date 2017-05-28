@@ -162,7 +162,8 @@ autocmd vimrc BufWritePre * call <SID>remove_space()
 autocmd vimrc BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
 
 " close help with 'q' key
-autocmd vimrc FileType help nnoremap <buffer> <silent>q :helpc<CR>
+autocmd vimrc FileType help nnoremap <buffer><silent>q :helpc<CR>
+autocmd vimrc FileType qf nnoremap <buffer><silent>q :cclose<CR>
 
 
 " Filetype settings
