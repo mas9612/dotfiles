@@ -111,6 +111,7 @@ cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
 
 
 " Filetype settings
+autocmd vimrc FileType c,cpp setlocal path=.,/usr/include,/usr/local/include
 autocmd vimrc FileType make setlocal noexpandtab
 autocmd vimrc FileType coffee setlocal shiftwidth=2 tabstop=2
 autocmd vimrc FileType vim setlocal shiftwidth=2 tabstop=2
