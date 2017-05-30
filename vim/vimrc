@@ -32,6 +32,7 @@ Plug 'vim-jp/vim-cpp', {'for': ['c', 'cpp']}
 Plug 'osyo-manga/vim-marching', {'for': ['c', 'cpp']}
 Plug 'kchmck/vim-coffee-script', {'for': 'coffee'}
 Plug 'mas9612/mdslide.vim', {'for': 'markdown'}
+Plug 'chrisbra/vim-diff-enhanced'
 call plug#end()
 
 
@@ -429,6 +430,13 @@ let g:ctrlp_custom_ignore = {
 " auto compile after save
 " autocmd vimrc BufWritePost *.coffee silent make!
 " autocmd vimrc QuickFixCmdPost *.coffee nested cwindow | redraw!
+
+
+" vim-diff-enhanced settings ================
+" started In Diff-Mode set diffexpr
+if &diff
+  let &diffexpr='EnhancedDiff#Diff("git diff", "--diff-algorithm=histogram")'
+endif
 
 
 filetype plugin indent on
