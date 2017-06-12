@@ -117,7 +117,7 @@ nnoremap <C-]> g<C-]>
 nnoremap <silent>[b :bprevious<CR>
 nnoremap <silent>]b :bnext<CR>
 nnoremap <silent>[B :bfirst<CR>
-nnoremap <silent>]B :last<CR>
+nnoremap <silent>]B :blast<CR>
 
 " quickfix
 nnoremap [q :cprevious<CR>
