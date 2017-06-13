@@ -54,10 +54,20 @@ augroup vimrc
     autocmd!
 augroup END
 
-" colorscheme settings
-let g:hybrid_use_iTerm_colors = 1
-set background=dark
+" iterm
+if has('unix')
+  let s:uname = system('uname -s')
+  if s:uname == 'Darwin'
+    let g:hybrid_use_iTerm_colors = 1
+  endif
+endif
+
+" set colorscheme to hybrid
+if !filereadable(expand('~/.vim/colors/hybrid.vim'))
+  call system('curl -fLo ~/.vim/colors/hybrid.vim https://raw.githubusercontent.com/w0ng/vim-hybrid/master/colors/hybrid.vim')
+endif
 colorscheme hybrid
+set background=dark
 
 set encoding=utf-8
 set fileencodings=utf-8,iso-2022-jp,euc-jp,sjis
