@@ -446,7 +446,7 @@ autocmd vimrc BufNew * CtrlPClearCache
 let g:ctrlp_use_caching = 1
 let g:ctrlp_show_hidden = 1
 let g:ctrlp_custom_ignore = {
-  \ 'dir': '\v[\/]\.git$',
+  \ 'dir': '\v([\/]\.git|node_modules)$',
   \ 'file': '\v\.(o|pyc)$',
   \ }
 
