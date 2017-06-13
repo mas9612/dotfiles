@@ -72,10 +72,13 @@ set background=dark
 set encoding=utf-8
 set fileencodings=utf-8,iso-2022-jp,euc-jp,sjis
 
-set backup
-set swapfile
+if !isdirectory(expand('$HOME/.vimbackup'))
+  call system('mkdir ~/.vimbackup')
+endif
 set backupdir=$HOME/.vimbackup
 set directory=$HOME/.vimbackup
+set backup
+set swapfile
 set hidden
 
 set ignorecase
