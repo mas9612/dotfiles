@@ -82,6 +82,8 @@ set backup
 set swapfile
 set hidden
 
+set ttimeoutlen=100
+
 set ignorecase
 set smartcase
 set incsearch
