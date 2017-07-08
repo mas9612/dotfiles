@@ -84,6 +84,7 @@ set hidden
 
 set ttimeoutlen=100
 
+set path+=./**
 set ignorecase
 set smartcase
 set incsearch
