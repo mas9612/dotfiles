@@ -318,6 +318,7 @@ let g:neocomplete#force_omni_input_patterns.python = '\h\w*\|[^. \t]\.\w*'
 
 
 " NERDTree Settings =========================
+nnoremap <Leader><C-e> <C-e>
 nnoremap <silent><C-e> :NERDTreeToggle<CR>
 autocmd vimrc bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
