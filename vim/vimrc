@@ -482,6 +482,10 @@ if &diff
 endif
 
 
+" mdslide.vim settings
+let g:mdslide_open_browser_cmd = 'open -a Google\ Chrome'
+
+
 filetype plugin indent on
 runtime macros/matchit.vim
 syntax on
