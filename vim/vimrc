@@ -200,11 +200,11 @@ augroup Binary
   autocmd BufReadPre *.bin let &binary=1
   autocmd BufReadPost * if &binary | silent %!xxd -g 1
   autocmd BufReadPost * set filetype=xxd | endif
-  autocmd BufWritePre * if &binary | let s:cursor = getpos(".")
+  autocmd BufWritePre * if &binary | let b:cursor = getpos(".")
   autocmd BufWritePre * silent %!xxd -r
   autocmd BufWritePre * endif
   autocmd BufWritePost * if &binary | silent %!xxd -g 1
-  autocmd BufWritePost * set nomodified | call setpos(".", s:cursor) | unlet s:cursor | endif
+  autocmd BufWritePost * set nomodified | call setpos(".", b:cursor) | unlet b:cursor | endif
 augroup END
 
 
