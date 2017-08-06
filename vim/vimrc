@@ -169,11 +169,13 @@ autocmd vimrc FileType make setlocal noexpandtab
 autocmd vimrc FileType coffee setlocal shiftwidth=2 tabstop=2
 autocmd vimrc FileType vim setlocal shiftwidth=2 tabstop=2
 autocmd vimrc FileType json setlocal shiftwidth=2 tabstop=2
-autocmd vimrc FileType lilypond set runtimepath+=/usr/local/share/lilypond/2.18.2/vim/
+autocmd vimrc FileType lilypond setlocal runtimepath+=/usr/local/share/lilypond/2.18.2/vim/
+autocmd vimrc FileType ruby setlocal shiftwidth=2 tabstop=2
 " close help with 'q' key
 autocmd vimrc FileType help nnoremap <buffer><silent>q :helpc<CR>
 " close QuickFix with 'q' key
 autocmd vimrc FileType qf nnoremap <buffer><silent>q :cclose<CR>
+autocmd vimrc FileType git set nofoldenable
 
 
 " set filetype
