@@ -1,3 +1,5 @@
+setlocal runtimepath+=/usr/local/share/lilypond/2.18.2/vim/
+
 let g:quickrun_config['lilypond'] = {
   \ 'command' : 'lilypond',
   \ 'outputter' : 'error',

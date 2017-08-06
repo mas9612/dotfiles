@@ -6,4 +6,6 @@ if &l:buftype !=# 'help'
   if has('conceal')
     setlocal conceallevel=0
   endif
+else
+  nnoremap <buffer><silent>q :helpc<CR>
 endif
