@@ -207,6 +207,20 @@ autocmd vimrc BufNewFile *.ly 0r $HOME/.vim/template/lilypond.txt
 autocmd vimrc BufNewFile *.py 0r $HOME/.vim/template/python.txt
 
 
+" binary editing mode
+augroup Binary
+  autocmd!
+  autocmd BufReadPre *.bin let &binary=1
+  autocmd BufReadPost * if &binary | silent %!xxd -g 1
+  autocmd BufReadPost * set filetype=xxd | endif
+  autocmd BufWritePre * if &binary | let s:cursor = getpos(".")
+  autocmd BufWritePre * silent %!xxd -r
+  autocmd BufWritePre * endif
+  autocmd BufWritePost * if &binary | silent %!xxd -g 1
+  autocmd BufWritePost * set nomodified | call setpos(".", s:cursor) | unlet s:cursor | endif
+augroup END
+
+
 " vim-marching settings
 let g:marching_clang_command = "/usr/bin/clang"
 let g:marching#clang_command#options = {
