@@ -44,6 +44,7 @@ Plug 'osyo-manga/vim-marching', {'for': ['c', 'cpp']}
 Plug 'kchmck/vim-coffee-script', {'for': 'coffee'}
 Plug 'mas9612/mdslide.vim', {'for': 'markdown'}
 Plug 'chrisbra/vim-diff-enhanced'
+Plug 'fatih/vim-go', {'for': 'go', 'do': ':GoInstallBinaries'}
 call plug#end()
 
 
@@ -486,6 +487,11 @@ endif
 
 " mdslide.vim settings
 let g:mdslide_open_browser_cmd = 'open -a Google\ Chrome'
+
+
+" vim-go settings
+let g:go_snippet_engine = "neosnippet"
+let g:go_template_autocreate = 0
 
 
 filetype plugin indent on
