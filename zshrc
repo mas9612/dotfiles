@@ -10,6 +10,10 @@ sudo_path=({/usr/local,/usr,}/sbin(N-/))
 export PYENV_ROOT=/usr/local/var/pyenv
 if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
 
+# Golang
+export GOPATH=$HOME/.golang
+export PATH=$PATH:$GOPATH/bin
+
 # for zsh-completions
 autoload -Uz compinit
 compinit -u
@@ -28,7 +32,7 @@ bindkey -e                  # set keybind to emacs-mode
 HISTFILE=~/.zsh_history     # file saved history
 HISTSIZE=10000              # number of history saved to memory
 SAVEHIST=10000              # saved history amount
-setopt hist_ignore_dups     # don't save duplicated history
+setopt hist_ignore_dups     # do not save duplicated history
 setopt share_history
 setopt auto_cd
 
