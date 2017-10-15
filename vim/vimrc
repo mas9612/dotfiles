@@ -25,17 +25,16 @@ Plug 'hail2u/vim-css3-syntax', {'for': 'css'}
 Plug 'pangloss/vim-javascript', {'for': 'js'}
 Plug 'jiangmiao/auto-pairs'
 Plug 'davidhalter/jedi-vim', {'for': 'python'}
+Plug 'hynek/vim-python-pep8-indent', {'for': 'python'}
 Plug 'scrooloose/syntastic'
 Plug 'lervag/vimtex', {'for': 'tex'}
 Plug 'Shougo/unite.vim'
 Plug 'osyo-manga/unite-quickfix'
 Plug 'Shougo/vimproc.vim', {'do': 'make'}
 Plug 'Konfekt/FastFold'
-Plug 'Shougo/vimshell'
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown', {'for': 'markdown'}
 Plug 'kannokanno/previm', {'for': 'markdown'}
-Plug 'hynek/vim-python-pep8-indent', {'for': 'python'}
 Plug 'itchyny/lightline.vim'
 Plug 'tomtom/tcomment_vim'
 Plug 'szw/vim-tags'
@@ -43,7 +42,9 @@ Plug 'vim-jp/vim-cpp', {'for': ['c', 'cpp']}
 Plug 'osyo-manga/vim-marching', {'for': ['c', 'cpp']}
 Plug 'kchmck/vim-coffee-script', {'for': 'coffee'}
 Plug 'mas9612/mdslide.vim', {'for': 'markdown'}
+Plug 'mas9612/md2tex.vim', {'for': 'markdown'}
 Plug 'chrisbra/vim-diff-enhanced'
+Plug 'osyo-manga/vim-monster', {'for': 'ruby'}
 Plug 'fatih/vim-go', {'for': 'go', 'do': ':GoInstallBinaries'}
 call plug#end()
 
@@ -319,11 +320,14 @@ endif
 " https://github.com/c9s/perlomni.vim
 let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
 
+let g:neocomplete#sources#omni#input_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
+
 if !exists('g:neocomplete#force_omni_input_patterns')
     let g:neocomplete#force_omni_input_patterns = {}
 endif
 let g:neocomplete#force_omni_input_patterns.cpp =
         \ '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
+" let g:neocomplete#force_omni_input_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
 
 
 " neosnippet settings
@@ -508,6 +512,10 @@ endif
 
 " mdslide.vim settings
 let g:mdslide_open_browser_cmd = 'open -a Google\ Chrome'
+
+
+" vim-monster settings
+let g:monster#completion#rcodetools#backend = "async_rct_complete"
 
 
 " vim-go settings
