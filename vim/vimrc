@@ -196,16 +196,35 @@ autocmd vimrc BufNewFile *.py 0r $HOME/.vim/template/python.txt
 
 
 " binary editing mode
+function! s:edit_binary()
+  if &binary
+    silent %!xxd -g 1
+    set filetype=xxd
+  endif
+endfunction
+
+function! s:pre_save_binary()
+  if &binary
+    let b:cursor = getpos(".")
+    silent %!xxd -r
+  endif
+endfunction
+
+function! s:after_save_binary()
+  if &binary
+    silent %!xxd -g 1
+    set nomodified
+    call setpos(".", b:cursor)
+    unlet b:cursor
+  endif
+endfunction
+
 augroup Binary
   autocmd!
   autocmd BufReadPre *.bin let &binary=1
-  autocmd BufReadPost * if &binary | silent %!xxd -g 1
-  autocmd BufReadPost * set filetype=xxd | endif
-  autocmd BufWritePre * if &binary | let b:cursor = getpos(".")
-  autocmd BufWritePre * silent %!xxd -r
-  autocmd BufWritePre * endif
-  autocmd BufWritePost * if &binary | silent %!xxd -g 1
-  autocmd BufWritePost * set nomodified | call setpos(".", b:cursor) | unlet b:cursor | endif
+  autocmd BufReadPost * call <SID>edit_binary()
+  autocmd BufWritePre * call <SID>pre_save_binary()
+  autocmd BufWritePost * call <SID>after_save_binary()
 augroup END
 
 
