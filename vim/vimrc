@@ -512,9 +512,6 @@ let g:go_template_autocreate = 0
 " fzf.vim settings
 let g:fzf_command_prefix = 'Fzf'
 
-nnoremap <C-p> :FzfFiles<CR>
-cabbrev ls FzfBuffers
-
 let g:fzf_action = {
   \ 'ctrl-t': 'tab split',
   \ 'ctrl-s': 'split',
@@ -523,6 +520,13 @@ let g:fzf_action = {
 
 " Default fzf layout
 let g:fzf_layout = { 'down': '~30%' }
+
+" replace Files command to include hidden files
+command! -bang -nargs=? -complete=dir FzfHFiles
+  \ call fzf#vim#files(<q-args>, {'source': 'ag --hidden --ignore .git -g ""'}, <bang>0)
+
+nnoremap <C-p> :FzfHFiles<CR>
+cabbrev ls FzfBuffers
 
 
 filetype plugin indent on
