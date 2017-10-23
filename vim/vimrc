@@ -526,6 +526,10 @@ endif
 nnoremap <Leader>t :TagbarToggle<CR>
 
 
+" vim-terraform settings
+let g:terraform_fmt_on_save = 1
+
+
 filetype plugin indent on
 runtime macros/matchit.vim
 syntax on
