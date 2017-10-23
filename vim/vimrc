@@ -17,7 +17,7 @@ Plug 'gregsexton/gitv', {'on': ['Gitv']}
 Plug 'Shougo/neocomplete.vim'
 Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
 Plug 'mattn/emmet-vim', {'for': ['htmldjango', 'html', 'css', 'php']}
-Plug 'thinca/vim-quickrun'
+Plug 'thinca/vim-quickrun', {'on': 'QuickRun'}
 Plug 'tpope/vim-surround'
 Plug 'othree/html5.vim', {'for': 'html'}
 Plug 'hail2u/vim-css3-syntax', {'for': 'css'}
@@ -25,7 +25,7 @@ Plug 'pangloss/vim-javascript', {'for': 'js'}
 Plug 'jiangmiao/auto-pairs'
 Plug 'davidhalter/jedi-vim', {'for': 'python'}
 Plug 'hynek/vim-python-pep8-indent', {'for': 'python'}
-Plug 'scrooloose/syntastic'
+Plug 'vim-syntastic/syntastic'
 Plug 'lervag/vimtex', {'for': 'tex'}
 Plug 'Shougo/unite.vim'
 Plug 'osyo-manga/unite-quickfix'
@@ -228,6 +228,8 @@ augroup Binary
 augroup END
 
 
+" plugin ===================
+
 " vim-marching settings
 let g:marching_clang_command = "/usr/bin/clang"
 let g:marching#clang_command#options = {
@@ -238,11 +240,12 @@ let g:marching_include_paths = [
 \   "/usr/local/include",
 \]
 let g:marching_enable_neocomplete = 1
+let g:marching#default_config = {
+\ " ignore_pat": '^_\D'
+\}
 
 
 " NeoComplete Settings ===============================
-" Disable AutoComplPop.
-let g:acp_enableAtStartup = 0
 " Use neocomplete.
 let g:neocomplete#enable_at_startup = 1
 " Use smartcase.
@@ -259,8 +262,6 @@ let g:neocomplete#enable_refresh_always = 1
 " Define dictionary.
 let g:neocomplete#sources#dictionary#dictionaries = {
     \ 'default' : '',
-    \ 'vimshell' : $HOME.'/.vimshell_hist',
-    \ 'scheme' : $HOME.'/.gosh_completions'
 \}
 
 " Define keyword.
@@ -281,22 +282,9 @@ function! s:my_cr_function()
   " For no inserting <CR> key.
   "return pumvisible() ? "\<C-y>" : "\<CR>"
 endfunction
-" <TAB>: completion.
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 " <C-h>, <BS>: close popup and delete backword char.
 inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
 inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
-" Close popup by <Space>.
-"inoremap <expr><Space> pumvisible() ? "\<C-y>" : "\<Space>"
-
-" AutoComplPop like behavior.
-"let g:neocomplete#enable_auto_select = 1
-
-" Shell like behavior(not recommended).
-"set completeopt+=longest
-"let g:neocomplete#enable_auto_select = 1
-"let g:neocomplete#disable_auto_complete = 1
-"inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<C-x>\<C-u>"
 
 " Enable omni completion.
 augroup neocomplete
@@ -311,9 +299,6 @@ augroup END
 if !exists('g:neocomplete#sources#omni#input_patterns')
   let g:neocomplete#sources#omni#input_patterns = {}
 endif
-"let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
-"let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
-"let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
 
 " For perlomni.vim setting.
 " https://github.com/c9s/perlomni.vim
@@ -321,12 +306,13 @@ let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
 
 let g:neocomplete#sources#omni#input_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
 
+let g:neocomplete#sources#omni#input_patterns.go = '\h\w\.\w*'
+
 if !exists('g:neocomplete#force_omni_input_patterns')
     let g:neocomplete#force_omni_input_patterns = {}
 endif
 let g:neocomplete#force_omni_input_patterns.cpp =
         \ '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
-" let g:neocomplete#force_omni_input_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
 
 
 " neosnippet settings
@@ -356,13 +342,12 @@ let g:jedi#auto_vim_configuration = 0
 let g:neocomplete#force_omni_input_patterns.python = '\h\w*\|[^. \t]\.\w*'
 
 
-" NERDTree Settings =========================
-nnoremap <Leader><C-e> <C-e>
-nnoremap <silent><C-e> :NERDTreeToggle<CR>
+" NERDTree Settings
+nnoremap <silent><Leader>e :NERDTreeToggle<CR>
 autocmd vimrc bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 
-" emmet-vim Settings ========================
+" emmet-vim Settings
 let g:user_emmet_settings = {
     \ 'variables': {
     \ 'lang' : 'ja'
@@ -370,7 +355,7 @@ let g:user_emmet_settings = {
 \}
 
 
-" syntastic Settings =========================
+" syntastic Settings
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
@@ -388,12 +373,12 @@ let g:syntastic_cpp_include_dirs = ['/usr/include', '/usr/local/include']
 let g:syntastic_python_checkers = ['pyflakes', 'pep8']
 
 
-" Tex settings ================================
+" Tex settings
 " disable the conceal function
 let g:tex_conceal=''
 
 
-" vim-quickrun settings ========================
+" vim-quickrun settings
 let g:quickrun_config = {
   \ "_" : {
   \   'runner': 'vimproc',
@@ -416,11 +401,11 @@ let g:quickrun_config = {
 nnoremap <expr><silent> <C-c> quickrun#is_running() ? quickrun#sweep_sessions() : "\<C-c>"
 
 
-" PreVim Settings ===========================
+" PreVim Settings
 let g:previm_open_cmd = 'open -a "Google Chrome"'
 
 
-" lightline settings ========================
+" lightline settings
 set noshowmode
 let g:lightline = {
     \ 'colorscheme': 'wombat',
@@ -475,23 +460,17 @@ function! LightLineFilename()
 endfunction
 
 
-" vim-tags settings =========================
+" vim-tags settings
 let g:vim_tags_auto_generate = 1
 let g:vim_tags_ctags_binary = "/usr/local/bin/ctags"
 
 
-" vim-markdown settings =====================
+" vim-markdown settings
 let g:vim_markdown_folding_disabled = 1
 let g:vim_markdown_math = 1
 
 
-" vim-coffee-script settings ================
-" auto compile after save
-" autocmd vimrc BufWritePost *.coffee silent make!
-" autocmd vimrc QuickFixCmdPost *.coffee nested cwindow | redraw!
-
-
-" vim-diff-enhanced settings ================
+" vim-diff-enhanced settings
 " started In Diff-Mode set diffexpr
 if &diff
   let &diffexpr='EnhancedDiff#Diff("git diff", "--diff-algorithm=histogram")'
@@ -509,6 +488,11 @@ let g:monster#completion#rcodetools#backend = "async_rct_complete"
 " vim-go settings
 let g:go_snippet_engine = "neosnippet"
 let g:go_template_autocreate = 0
+let g:go_highlight_operators = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_types = 1
+let g:go_highlight_build_constraints = 1
 
 
 " fzf.vim settings
