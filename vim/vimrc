@@ -107,7 +107,6 @@ set showmatch
 set matchpairs& matchpairs+=<:>
 set grepformat=%f:%l:%m,%f,%l%m,%f\ \ %l%m
 set grepprg=grep\ -nh
-" set clipboard=unnamed,autoselect
 set ruler
 set cursorline
 set lazyredraw
@@ -191,8 +190,8 @@ autocmd vimrc BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe
 
 
 " Template File setting
-autocmd vimrc BufNewFile *.ly 0r $HOME/.vim/template/lilypond.txt
-autocmd vimrc BufNewFile *.py 0r $HOME/.vim/template/python.txt
+autocmd vimrc BufNewFile *.ly 0read $HOME/.vim/template/lilypond.txt
+autocmd vimrc BufNewFile *.py 0read $HOME/.vim/template/python.txt
 
 
 " binary editing mode
