@@ -47,6 +47,8 @@ Plug 'osyo-manga/vim-monster', {'for': 'ruby'}
 Plug 'fatih/vim-go', {'for': 'go', 'do': ':GoInstallBinaries'}
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
+Plug 'mileszs/ack.vim'
+Plug 'majutsushi/tagbar'
 call plug#end()
 
 
@@ -527,6 +529,16 @@ command! -bang -nargs=? -complete=dir FzfHFiles
 
 nnoremap <C-p> :FzfHFiles<CR>
 cabbrev ls FzfBuffers
+
+
+" ack.vim settings
+if executable('ag')
+  let g:ackprg = 'ag --vimgrep'
+endif
+
+
+" tagbar settings
+nnoremap <Leader>t :TagbarToggle<CR>
 
 
 filetype plugin indent on
