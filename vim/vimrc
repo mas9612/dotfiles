@@ -49,6 +49,7 @@ Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'mileszs/ack.vim'
 Plug 'majutsushi/tagbar'
+Plug 'hashivim/vim-terraform', {'for': 'terraform'}
 call plug#end()
 
 
@@ -164,8 +165,9 @@ cnoremap <C-n> <Down>
 
 
 " set filetype
-autocmd vimrc BufNewFile,BufRead *.html set filetype=htmldjango
-autocmd vimrc BufNewFile,BufRead *.coffee set filetype=coffee
+autocmd vimrc BufNewFile,BufRead *.html setlocal filetype=htmldjango
+autocmd vimrc BufNewFile,BufRead *.coffee setlocal filetype=coffee
+autocmd vimrc BufNewFile,BufRead *.tf setlocal filetype=terraform
 
 
 " open QuickFix window automatically after use make or grep commands
