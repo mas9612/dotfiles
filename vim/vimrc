@@ -510,7 +510,7 @@ let g:fzf_layout = { 'down': '~30%' }
 
 " replace Files command to include hidden files
 command! -bang -nargs=? -complete=dir FzfHFiles
-  \ call fzf#vim#files(<q-args>, {'source': 'ag --hidden --ignore .git -g ""'}, <bang>0)
+  \ call fzf#vim#files(<q-args>, {'source': 'ag --hidden --skip-vcs-ignores --ignore .git -g ""'}, <bang>0)
 
 nnoremap <C-p> :FzfHFiles<CR>
 cabbrev ls FzfBuffers
