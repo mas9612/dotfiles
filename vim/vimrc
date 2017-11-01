@@ -70,7 +70,7 @@ endif
 
 " set colorscheme to hybrid
 if !filereadable(expand('~/.vim/colors/hybrid.vim'))
-  call system('mkdir -p ~/.vim/colors')
+  call mkdir('~/.vim/colors', 'p')
   call system('curl -fLo ~/.vim/colors/hybrid.vim https://raw.githubusercontent.com/mas9612/dotfiles/master/vim/colors/hybrid.vim')
 endif
 colorscheme hybrid
