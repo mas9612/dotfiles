@@ -399,7 +399,15 @@ let g:quickrun_config = {
 \}
 
 " Press <C-c> to stop QuickRun
-nnoremap <expr><silent> <C-c> quickrun#is_running() ? quickrun#sweep_sessions() : "\<C-c>"
+" define custom function to compatible with lazy load
+function! s:quickrun_is_running()
+  if exists('*quickrun#is_running()')
+    return quickrun#is_running()
+  else
+    return 0
+  end
+endfunction
+nnoremap <expr><silent> <C-c> <SID>quickrun_is_running() ? quickrun#sweep_sessions() : "\<C-c>"
 
 
 " PreVim Settings
