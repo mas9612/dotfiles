@@ -59,21 +59,22 @@ autoload -Uz colors
 colors
 
 autoload -Uz vcs_info
-vcs_info
 
 zstyle ':vcs_info:*' enable git
 zstyle ':vcs_info:git:*' check-for-changes true
 zstyle ':vcs_info:git:*' branchformat "%b"
 zstyle ':vcs_info:git:*' stagedstr "%F{green}!"
 zstyle ':vcs_info:git:*' unstagedstr "%F{magenta}+"
-zstyle ':vcs_info:*' formats "%F{cyan}%c%u(%b)%f"
+zstyle ':vcs_info:*' formats "%F{green}%c%u(%b)%f"
 zstyle ':vcs_info:*' actionformats '[%b|%a]'
 
-precmd() { vcs_info }
+precmd() {
+    vcs_info
+    RPROMPT="${vcs_info_msg_0_}"
+}
 
 PROMPT="%F{cyan}[%n:%~]%f "
 PROMPT2="%F{cyan}%_>%f "
-RPROMPT="${vcs_info_msg_0_}"
 
 # added by travis gem
 [ -f /Users/MasatoYamazaki/.travis/travis.sh ] && source /Users/MasatoYamazaki/.travis/travis.sh
