@@ -83,7 +83,7 @@ PROMPT2="%F{cyan}%_>%f "
 ##################################################
 # fzf config
 ##################################################
-export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -l -g ""'
+export FZF_DEFAULT_COMMAND='ag --hidden --skip-vcs-ignores --ignore .git --ignore __pycache__ -l -g ""'
 export FZF_DEFAULT_OPTS='--height 30% --border --reverse'
 
 # fe [FUZZY PATTERN] - Open the selected file with the default editor
