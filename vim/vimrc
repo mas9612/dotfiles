@@ -48,7 +48,7 @@ Plug 'fatih/vim-go', {'for': 'go', 'do': ':GoInstallBinaries'}
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'mileszs/ack.vim'
-Plug 'majutsushi/tagbar', {'on': 'Tagbar'}
+Plug 'majutsushi/tagbar', {'on': ['Tagbar', 'TagbarToggle']}
 Plug 'hashivim/vim-terraform', {'for': 'terraform'}
 call plug#end()
 
@@ -532,7 +532,7 @@ endif
 
 
 " tagbar settings
-nnoremap <Leader>t :TagbarToggle<CR>
+nnoremap <silent><Leader>t :TagbarToggle<CR>
 
 
 " vim-terraform settings
