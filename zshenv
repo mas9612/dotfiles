@@ -1,6 +1,6 @@
 # set path
 path=(/usr/local/bin(N-/) /usr/local/git/bin(N-/) /usr/local/sbin(N-/) /usr/local/bin/run(N-/) ${path})
-fpath=(/usr/local/share/zsh-completions $fpath)
+fpath=(/usr/local/share/zsh-completions(N-/) ~/.zsh/completions(N-/) $fpath)
 
 # golang
 path=($HOME/.golang/bin(N-/) ${path})
