@@ -69,7 +69,7 @@ nnoremap <silent><Leader>q :QuickRun<CR>
 
 command! -nargs=0 OpenPdf call <SID>openPdf()
 
-augroup ft_tex
-  autocmd!
-  autocmd BufWritePost *.tex :QuickRun
-augroup END
+" augroup ft_tex
+"   autocmd!
+"   autocmd BufWritePost *.tex :QuickRun
+" augroup END
