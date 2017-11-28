@@ -102,7 +102,7 @@ set ambiwidth=double
 set backspace=indent,eol,start
 
 set list
-set listchars=tab:>-,trail:-
+set listchars=tab:>\ ,trail:-
 set number
 set showmatch
 set matchpairs& matchpairs+=<:>
