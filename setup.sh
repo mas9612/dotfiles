@@ -20,3 +20,6 @@ ln -sf $PWD/vim/snippets ~/.vim/snippets
 if [ `which pip` ]; then
     pip install -r $PWD/pip_requirements.txt
 fi
+
+# install vim plugins
+vim -c ':PlugInstall | :wqa'
