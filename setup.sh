@@ -1,7 +1,5 @@
 #!/bin/bash
 
-PWD=`pwd`
-
 ln -sf $PWD/zshenv ~/.zshenv
 ln -sf $PWD/zshrc ~/.zshrc
 ln -sf $PWD/tmux.conf ~/.tmux.conf
@@ -10,7 +8,7 @@ ln -sf $PWD/ctags ~/.ctags
 ln -sf $PWD/latexmkrc ~/.latexmkrc
 
 if [ ! -d ~/.vim ]; then
-    mkdir -f ~/.vim
+    mkdir -p ~/.vim
 fi
 ln -sf $PWD/vim/vimrc ~/.vimrc
 ln -sf $PWD/vim/gvimrc ~/.gvimrc
