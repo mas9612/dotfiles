@@ -27,8 +27,6 @@ Plug 'davidhalter/jedi-vim', {'for': 'python'}
 Plug 'hynek/vim-python-pep8-indent', {'for': 'python'}
 Plug 'vim-syntastic/syntastic'
 Plug 'lervag/vimtex', {'for': 'tex'}
-Plug 'Shougo/unite.vim'
-Plug 'osyo-manga/unite-quickfix'
 Plug 'Shougo/vimproc.vim', {'do': 'make'}
 Plug 'Konfekt/FastFold'
 Plug 'godlygeek/tabular'
