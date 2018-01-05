@@ -22,4 +22,4 @@ if [ `which pip` ]; then
 fi
 
 # install vim plugins
-vim -c ':PlugInstall | :wqa'
+vim -c ':PlugInstall | :qa'
