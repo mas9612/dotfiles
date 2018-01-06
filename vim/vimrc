@@ -380,9 +380,9 @@ let g:syntastic_go_checkers = ['golint']
 " Tex settings
 let g:vimtex_compiler_progname = 'latexmk'
 let g:vimtex_compiler_latexmk = {'options': []}
-
 " disable the conceal function
 let g:tex_conceal=''
+nmap <silent><Leader>c <plug>(vimtex-compile)
 
 
 " vim-quickrun settings
