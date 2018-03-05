@@ -540,4 +540,5 @@ let g:terraform_fmt_on_save = 1
 
 filetype plugin indent on
 runtime macros/matchit.vim
+runtime ftplugin/man.vim
 syntax on
