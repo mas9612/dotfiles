@@ -48,6 +48,8 @@ Plug 'junegunn/fzf.vim'
 Plug 'mileszs/ack.vim'
 Plug 'majutsushi/tagbar', {'on': ['Tagbar', 'TagbarToggle']}
 Plug 'hashivim/vim-terraform', {'for': 'terraform'}
+Plug 'vim-scripts/Align'
+Plug 'tpope/vim-abolish'
 call plug#end()
 
 
@@ -116,6 +118,9 @@ set wildignore+=*.o,*.pyc
 
 set visualbell t_vb=
 set noerrorbells
+
+set spell
+set spelllang=en,cjk
 
 set tags=./tags;
 
