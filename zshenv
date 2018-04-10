@@ -11,3 +11,6 @@ export BOOST_ROOT=(/usr/local/Cellar/boost/1.62.0)
 
 # set Java encoding to utf-8
 export JAVA_TOOL_OPTIONS=-Dfile.encoding=UTF-8
+
+# for Docker Engine API
+export DOCKER_API_VERSION=`docker version | awk '/API version/ {print $3}' | head -1`
