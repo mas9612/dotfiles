@@ -46,7 +46,6 @@ Plug 'fatih/vim-go', {'for': 'go', 'do': ':GoInstallBinaries'}
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'mileszs/ack.vim'
-Plug 'majutsushi/tagbar', {'on': ['Tagbar', 'TagbarToggle']}
 Plug 'hashivim/vim-terraform', {'for': 'terraform'}
 Plug 'vim-scripts/Align'
 Plug 'tpope/vim-abolish'
@@ -526,17 +525,14 @@ let g:fzf_action = {
 let g:fzf_layout = { 'down': '~30%' }
 
 nnoremap <C-p> :FzfFiles<CR>
-cabbrev ls FzfBuffers
+nnoremap <silent><Leader>b :FzfBuffers<CR>
+nnoremap <silent><Leader>t :FzfTags<CR>
 
 
 " ack.vim settings
 if executable('ag')
   let g:ackprg = 'ag --vimgrep'
 endif
-
-
-" tagbar settings
-nnoremap <silent><Leader>t :TagbarToggle<CR>
 
 
 " vim-terraform settings
