@@ -524,7 +524,7 @@ let g:fzf_action = {
 " Default fzf layout
 let g:fzf_layout = { 'down': '~30%' }
 
-nnoremap <C-p> :FzfFiles<CR>
+nnoremap <silent><C-p> :FzfFiles<CR>
 nnoremap <silent><Leader>b :FzfBuffers<CR>
 nnoremap <silent><Leader>t :FzfTags<CR>
 
