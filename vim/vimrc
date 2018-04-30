@@ -26,7 +26,7 @@ Plug 'pangloss/vim-javascript', {'for': 'js'}
 Plug 'jiangmiao/auto-pairs'
 Plug 'davidhalter/jedi-vim', {'for': 'python'}
 Plug 'hynek/vim-python-pep8-indent', {'for': 'python'}
-Plug 'vim-syntastic/syntastic'
+Plug 'w0rp/ale'
 Plug 'lervag/vimtex', {'for': 'tex'}
 Plug 'Shougo/vimproc.vim', {'do': 'make'}
 Plug 'Konfekt/FastFold'
@@ -34,6 +34,7 @@ Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown', {'for': 'markdown'}
 Plug 'kannokanno/previm', {'for': 'markdown'}
 Plug 'itchyny/lightline.vim'
+Plug 'maximbaz/lightline-ale'
 Plug 'tomtom/tcomment_vim'
 Plug 'szw/vim-tags'
 Plug 'vim-jp/vim-cpp', {'for': ['c', 'cpp']}
@@ -361,25 +362,6 @@ let g:user_emmet_settings = {
 \}
 
 
-" syntastic Settings
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-
-" syntastic checkers
-" let g:syntastic_<filetype>_checkers = ['<checker-name>']
-let g:syntastic_cpp_compiler = 'clang++'
-let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
-let g:syntastic_cpp_include_dirs = ['/usr/include', '/usr/local/include']
-let g:syntastic_python_checkers = ['flake8']
-let g:syntastic_go_checkers = ['golint']
-
-
 " Tex settings
 let g:vimtex_compiler_progname = 'latexmk'
 let g:vimtex_compiler_latexmk = {'options': []}
@@ -426,20 +408,40 @@ let g:previm_open_cmd = 'open -a "Google Chrome"'
 " lightline settings
 set noshowmode
 let g:lightline = {
-    \ 'colorscheme': 'wombat',
-    \ 'active': {
-    \   'left': [ [ 'mode', 'paste' ],
-    \             [ 'fugitive', 'filename' ] ]
-    \ },
-    \ 'component_function': {
-    \   'fugitive': 'LightLineFugitive',
-    \   'readonly': 'LightLineReadonly',
-    \   'modified': 'LightLineModified',
-    \   'filename': 'LightLineFilename'
-    \ },
-    \ 'separator': { 'left': "\u2b80", 'right': "\u2b82" },
-    \ 'subseparator': { 'left': "\u2b81", 'right': "\u2b83" }
+  \ 'colorscheme': 'wombat',
+  \ 'active': {
+  \   'left': [
+  \     [ 'mode', 'paste' ],
+  \     [ 'fugitive', 'filename' ]
+  \   ],
+  \   'right': [
+  \     [ 'lineinfo' ],
+  \     [ 'percent' ],
+  \     [ 'fileformat', 'fileencoding', 'filetype' ],
+  \     [ 'linter_checking', 'linter_warnings', 'linter_errors', 'linter_ok' ],
+  \   ],
+  \ },
+  \ 'component_function': {
+  \   'fugitive': 'LightLineFugitive',
+  \   'readonly': 'LightLineReadonly',
+  \   'modified': 'LightLineModified',
+  \   'filename': 'LightLineFilename'
+  \ },
+  \ 'component_expand': {
+  \   'linter_checking': 'lightline#ale#checking',
+  \   'linter_warnings': 'lightline#ale#warnings',
+  \   'linter_errors': 'lightline#ale#errors',
+  \   'linter_ok': 'lightline#ale#ok',
+  \ },
+  \ 'component_type': {
+  \   'linter_checking': 'ok',
+  \   'linter_warnings': 'warning',
+  \   'linter_errors': 'error',
+  \   'linter_ok': 'ok',
+  \ },
 \}
+" \ 'separator': { 'left': "\u2b80", 'right': "\u2b82" },
+" \ 'subseparator': { 'left': "\u2b81", 'right': "\u2b83" },
 
 function! LightLineModified()
   if &filetype == "help"
@@ -476,6 +478,18 @@ function! LightLineFilename()
        \ ('' != expand('%:t') ? expand('%:t') : '[No Name]') .
        \ ('' != LightLineModified() ? ' ' . LightLineModified() : '')
 endfunction
+
+
+" ale settings
+let g:ale_sign_column_always = 1
+let g:ale_lint_on_save = 1
+let g:ale_lint_on_text_changed = 0
+let g:ale_open_list = 1
+
+augroup CloseLoclistWindowGroup
+  autocmd!
+  autocmd QuitPre * if empty(&buftype) | lclose | endif
+augroup END
 
 
 " vim-tags settings
