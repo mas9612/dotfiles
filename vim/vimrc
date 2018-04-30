@@ -122,6 +122,9 @@ set noerrorbells
 
 set spell
 set spelllang=en,cjk
+augroup vimrc
+  autocmd FileType gitv,git setlocal nospell
+augroup END
 
 set tags=./tags;
 
@@ -132,7 +135,7 @@ iabbrev #b /**************************************************
 iabbrev #e **************************************************/
 
 
-" remap ==================================================
+" remap
 nnoremap : ;
 vnoremap : ;
 nnoremap ; :
@@ -235,7 +238,7 @@ augroup Binary
 augroup END
 
 
-" plugin ===================
+" plugin
 
 " vim-marching settings
 let g:marching_clang_command = "/usr/bin/clang"
@@ -252,7 +255,7 @@ let g:marching#default_config = {
 \}
 
 
-" NeoComplete Settings ===============================
+" NeoComplete Settings
 " Use neocomplete.
 let g:neocomplete#enable_at_startup = 1
 " Use smartcase.
