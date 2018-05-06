@@ -33,7 +33,7 @@ bindkey "^N" history-beginning-search-forward-end
 
 setopt auto_cd
 setopt auto_list
-setopt hist_ignore_dups
+setopt hist_ignore_all_dups
 setopt share_history
 setopt ignore_eof
 setopt prompt_subst
