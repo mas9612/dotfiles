@@ -14,3 +14,6 @@ export JAVA_TOOL_OPTIONS=-Dfile.encoding=UTF-8
 
 # for Docker Engine API
 export DOCKER_API_VERSION=`docker version | awk '/API version/ {print $3}' | head -1`
+
+# latex style file
+export TEXINPUTS=.:~/github/tex_gaiyo/:
