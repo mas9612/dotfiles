@@ -8,6 +8,21 @@ if has('vim_starting')
   endif
 endif
 
+function! IncludePath(path)
+  " define delimiter depends on platform
+  if has('win16') || has('win32') || has('win64')
+    let delimiter = ";"
+  else
+    let delimiter = ":"
+  endif
+  let pathlist = split($PATH, delimiter)
+  if isdirectory(a:path) && index(pathlist, a:path) == -1
+    let $PATH=a:path.delimiter.$PATH
+  endif
+endfunction
+
+call IncludePath(expand("~/.pyenv/shims"))
+
 call plug#begin('~/.vim/plugged')
 Plug 'junegunn/vim-plug', {'dir': '~/.vim/plugged/vim-plug/autoload'}
 Plug 'Shougo/neosnippet.vim'
@@ -24,6 +39,7 @@ Plug 'othree/html5.vim', {'for': 'html'}
 Plug 'hail2u/vim-css3-syntax', {'for': 'css'}
 Plug 'pangloss/vim-javascript', {'for': 'js'}
 Plug 'jiangmiao/auto-pairs'
+Plug 'lambdalisue/vim-pyenv', {'for': 'python'}
 Plug 'davidhalter/jedi-vim', {'for': 'python'}
 Plug 'hynek/vim-python-pep8-indent', {'for': 'python'}
 Plug 'w0rp/ale'
