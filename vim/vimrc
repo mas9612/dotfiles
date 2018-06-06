@@ -443,6 +443,9 @@ let g:lightline = {
   \     [ 'linter_checking', 'linter_warnings', 'linter_errors', 'linter_ok' ],
   \   ],
   \ },
+  \ 'component': {
+  \   'lineinfo': '%3l:%2v:%2{GetCurrentChars()}',
+  \ },
   \ 'component_function': {
   \   'fugitive': 'LightLineFugitive',
   \   'readonly': 'LightLineReadonly',
@@ -464,6 +467,18 @@ let g:lightline = {
 \}
 " \ 'separator': { 'left': "\u2b80", 'right': "\u2b82" },
 " \ 'subseparator': { 'left': "\u2b81", 'right': "\u2b83" },
+
+function! GetCurrentChars()
+  let l:mode = mode()
+
+  if l:mode == "v" || l:mode == "v" || l:mode == "\<C-v>"
+    let l:chars = wordcount().visual_chars
+  else
+    let l:chars = wordcount().cursor_chars
+  endif
+
+  return l:chars
+endfunction
 
 function! LightLineModified()
   if &filetype == "help"
