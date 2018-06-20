@@ -67,6 +67,7 @@ Plug 'mileszs/ack.vim'
 Plug 'hashivim/vim-terraform', {'for': 'terraform'}
 Plug 'vim-scripts/Align'
 Plug 'tpope/vim-abolish'
+Plug 'nathanaelkane/vim-indent-guides'
 call plug#end()
 
 
@@ -594,6 +595,15 @@ endif
 
 " vim-terraform settings
 let g:terraform_fmt_on_save = 1
+
+
+" vim-indent-guides settings
+let g:indent_guides_enable_on_vim_startup = 1
+let g:indent_guides_exclude_filetypes = ['help', 'nerdtree', 'gitv']
+
+let g:indent_guides_auto_colors = 0
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=NONE     ctermbg=NONE
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=darkgrey ctermbg=8
 
 
 filetype plugin indent on
