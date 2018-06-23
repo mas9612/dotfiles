@@ -140,7 +140,7 @@ set noerrorbells
 set spell
 set spelllang=en,cjk
 augroup vimrc
-  autocmd FileType gitv,git setlocal nospell
+  autocmd FileType gitv,git,godoc setlocal nospell
 augroup END
 
 set tags=./tags;
