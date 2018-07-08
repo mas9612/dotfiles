@@ -388,6 +388,7 @@ let g:user_emmet_settings = {
 " Tex settings
 let g:vimtex_compiler_progname = 'latexmk'
 let g:vimtex_compiler_latexmk = {'options': []}
+let g:vimtex_compiler_latexmk_engines = {'_' : '-pdfdvi'}
 " disable the conceal function
 let g:tex_conceal=''
 nmap <silent><Leader>c <plug>(vimtex-compile)
