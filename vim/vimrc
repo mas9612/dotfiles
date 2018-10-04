@@ -39,9 +39,9 @@ Plug 'othree/html5.vim', {'for': 'html'}
 Plug 'hail2u/vim-css3-syntax', {'for': 'css'}
 Plug 'pangloss/vim-javascript', {'for': 'js'}
 Plug 'jiangmiao/auto-pairs'
-Plug 'lambdalisue/vim-pyenv', {'for': 'python'}
 Plug 'davidhalter/jedi-vim', {'for': 'python'}
 Plug 'hynek/vim-python-pep8-indent', {'for': 'python'}
+Plug 'lambdalisue/vim-pyenv', {'for': 'python'}
 Plug 'w0rp/ale'
 Plug 'lervag/vimtex', {'for': 'tex'}
 Plug 'Shougo/vimproc.vim', {'do': 'make'}
@@ -138,11 +138,11 @@ set wildignore+=*.o,*.pyc
 set visualbell t_vb=
 set noerrorbells
 
-set spell
-set spelllang=en,cjk
-augroup vimrc
-  autocmd FileType gitv,git,godoc setlocal nospell
-augroup END
+" set spell
+" set spelllang=en,cjk
+" augroup vimrc
+"   autocmd FileType gitv,git,godoc setlocal nospell
+" augroup END
 
 set tags=./tags;
 
@@ -446,9 +446,6 @@ let g:lightline = {
   \     [ 'linter_checking', 'linter_warnings', 'linter_errors', 'linter_ok' ],
   \   ],
   \ },
-  \ 'component': {
-  \   'lineinfo': '%3l:%2v:%2{GetCurrentChars()}',
-  \ },
   \ 'component_function': {
   \   'fugitive': 'LightLineFugitive',
   \   'readonly': 'LightLineReadonly',
@@ -470,18 +467,21 @@ let g:lightline = {
 \}
 " \ 'separator': { 'left': "\u2b80", 'right': "\u2b82" },
 " \ 'subseparator': { 'left': "\u2b81", 'right': "\u2b83" },
+" \ 'component': {
+" \   'lineinfo': '%3l:%2v:%2{GetCurrentChars()}',
+" \ },
 
-function! GetCurrentChars()
-  let l:mode = mode()
-
-  if l:mode == "v" || l:mode == "v" || l:mode == "\<C-v>"
-    let l:chars = wordcount().visual_chars
-  else
-    let l:chars = wordcount().cursor_chars
-  endif
-
-  return l:chars
-endfunction
+" function! GetCurrentChars()
+"   let l:mode = mode()
+"
+"   if l:mode == "v" || l:mode == "v" || l:mode == "\<C-v>"
+"     let l:chars = wordcount().visual_chars
+"   else
+"     let l:chars = wordcount().cursor_chars
+"   endif
+"
+"   return l:chars
+" endfunction
 
 function! LightLineModified()
   if &filetype == "help"
