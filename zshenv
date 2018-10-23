@@ -17,3 +17,5 @@ export DOCKER_API_VERSION=`docker version | awk '/API version/ {print $3}' | hea
 
 # latex style file
 export TEXINPUTS=.:~/github/tex_gaiyo/:
+
+export PYTHONPATH=/usr/local/pyenv/versions/3.7.0/bin:/usr/local/var/pyenv/versions/3.7.0/lib/python37.zip:/usr/local/var/pyenv/versions/3.7.0/lib/python3.7:/usr/local/var/pyenv/versions/3.7.0/lib/python3.7/lib-dynload:/usr/local/var/pyenv/versions/3.7.0/lib/python3.7/site-packages:/usr/local/var/pyenv/versions/3.7.0/lib/python3.7/site-packages/IPython/extensions:$PYTHONPATH
