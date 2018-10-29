@@ -73,6 +73,7 @@ zstyle ':vcs_info:*' actionformats '[%b|%a]'
 precmd() {
     vcs_info
     RPROMPT="${vcs_info_msg_0_}"
+    export CURRENT_PYTHON_VERSION="$(cat $(pyenv root)/version)"
 }
 
 PROMPT="%F{cyan}[%n:%~]%f "
@@ -187,3 +188,6 @@ foh() {
 fh() {
   print -z $( ([ -n "$ZSH_NAME" ] && fc -l 1 || history) | fzf +s --tac | sed 's/ *[0-9]* *//')
 }
+
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /usr/local/Cellar/terraform/0.11.8/bin/terraform terraform
