@@ -178,6 +178,8 @@ nnoremap gk k
 
 nnoremap Q gq
 
+nnoremap c. q:k<CR>
+
 nnoremap <silent><ESC><ESC> :nohlsearch<CR>
 
 " for ctags
