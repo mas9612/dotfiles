@@ -33,6 +33,7 @@ else
 endif
 Plug 'zchee/deoplete-go', {'do': 'make'}
 Plug 'zchee/deoplete-jedi', {'for': 'python'}
+Plug 'Shougo/deoplete-clangx', {'for': ['c', 'cpp']}
 
 Plug 'junegunn/vim-plug', {'dir': '~/.vim/plugged/vim-plug/autoload'}
 Plug 'Shougo/neosnippet.vim'
