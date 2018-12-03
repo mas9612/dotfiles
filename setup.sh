@@ -13,15 +13,9 @@ ln -sf $PWD/.tmux.conf ~/.tmux.conf
 ln -sf $PWD/.ctags ~/.ctags
 ln -sf $PWD/.latexmkrc ~/.latexmkrc
 
-if [ ! -d ~/.vim ]; then
-    mkdir -p ~/.vim
-fi
-ln -sf $PWD/.vim/vimrc ~/.vimrc
-ln -sf $PWD/.vim/gvimrc ~/.gvimrc
-ln -sf $PWD/.vim/colors ~/.vim/colors
-ln -sf $PWD/.vim/ftplugin ~/.vim/ftplugin
-ln -sf $PWD/.vim/template ~/.vim/template
-ln -sf $PWD/.vim/snippets ~/.vim/snippets
+ln -sf $PWD/.vimrc ~/.vimrc
+ln -sf $PWD/.gvimrc ~/.gvimrc
+ln -sf $PWD/.vim ~/.vim
 
 # install vim plugins
 vim -c ':PlugInstall | :qa'
