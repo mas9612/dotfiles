@@ -6,6 +6,8 @@ cd `dirname $0`
 brew bundle
 brew cleanup && brew bundle cleanup
 
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+
 ln -sf $PWD/.zshenv ~/.zshenv
 ln -sf $PWD/.zshrc ~/.zshrc
 ln -sf $PWD/.tmux.conf ~/.tmux.conf
