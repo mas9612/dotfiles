@@ -4,7 +4,7 @@ fpath=(/usr/local/share/zsh-completions(N-/) ~/.zsh/completions(N-/) $fpath)
 
 # golang
 path=($HOME/.golang/bin(N-/) ${path})
-export GOPATH=$HOME/.golang
+export GOPATH=$HOME/go
 
 # boost path settings
 export BOOST_ROOT=(/usr/local/Cellar/boost/1.62.0)
