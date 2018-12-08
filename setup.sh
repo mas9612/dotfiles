@@ -4,7 +4,7 @@ cd `dirname $0`
 
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 brew bundle
-brew cleanup && brew bundle cleanup
+brew cleanup
 
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
@@ -21,3 +21,6 @@ ln -sf $PWD/.vim ~/.vim
 
 # install vim plugins
 vim -c ':PlugInstall | :qa'
+
+# Run Adobe Creative Cloud installer manually
+open "/usr/local/Caskroom/adobe-creative-cloud/latest/Creative Cloud Installer.app"
