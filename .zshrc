@@ -79,9 +79,6 @@ precmd() {
 PROMPT="%F{cyan}[%n:%~]%f "
 PROMPT2="%F{cyan}%_>%f "
 
-# added by travis gem
-[ -f /Users/MasatoYamazaki/.travis/travis.sh ] && source /Users/MasatoYamazaki/.travis/travis.sh
-
 # enable kubectl autocomplete
 source <(kubectl completion zsh)
 
