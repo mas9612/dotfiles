@@ -56,6 +56,7 @@ cask "texshop"
 cask "the-unarchiver"
 cask "virtualbox"
 cask "vmware-remote-console"
+cask "wireshark"
 
 mas "Airmail 3", id: 918858936
 mas "Bitdefender Virus Scanner", id: 500154009
