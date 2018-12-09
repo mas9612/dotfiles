@@ -3,7 +3,7 @@ path=(/usr/local/opt/openssl@1.1/bin(N-/) /usr/local/bin(N-/) /usr/local/git/bin
 fpath=(/usr/local/share/zsh-completions(N-/) ~/.zsh/completions(N-/) $fpath)
 
 # golang
-path=($HOME/.golang/bin(N-/) ${path})
+path=($HOME/go/bin(N-/) ${path})
 export GOPATH=$HOME/go
 
 # boost path settings
