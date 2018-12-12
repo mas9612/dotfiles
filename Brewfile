@@ -7,6 +7,7 @@ brew "clang-format"
 brew "ctags"
 brew "fzf"
 brew "gcc"
+brew "gdb", args: ["with-python"]
 brew "git"
 brew "gnu-sed"
 brew "go"
