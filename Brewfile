@@ -5,6 +5,7 @@ tap "homebrew/cask-versions"
 brew "arp-scan"
 brew "clang-format"
 brew "ctags"
+brew "etcd"
 brew "fzf"
 brew "gcc"
 brew "gdb", args: ["with-python"]
