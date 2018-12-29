@@ -1,12 +1,14 @@
 tap "homebrew/bundle"
 tap "homebrew/cask"
 tap "homebrew/cask-versions"
+tap "ktr0731/evans"
 
 brew "arp-scan"
 brew "clang-format"
 brew "ctags"
 brew "dep"
 brew "etcd"
+brew "evans"
 brew "fzf"
 brew "gcc"
 brew "gdb", args: ["with-python"]
