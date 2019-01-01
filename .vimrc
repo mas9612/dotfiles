@@ -64,6 +64,7 @@ Plug 'maximbaz/lightline-ale'
 Plug 'tomtom/tcomment_vim'
 Plug 'szw/vim-tags'
 Plug 'majutsushi/tagbar'
+Plug 'rhysd/vim-clang-format', {'for': ['c', 'cpp']}
 Plug 'vim-jp/vim-cpp', {'for': ['c', 'cpp']}
 Plug 'osyo-manga/vim-marching', {'for': ['c', 'cpp']}
 Plug 'kchmck/vim-coffee-script', {'for': 'coffee'}
@@ -272,6 +273,24 @@ augroup END
 
 
 " plugin
+
+" vim-clang-format
+let g:clang_format#auto_format = 1
+let g:clang_format#style_options = {
+\ "AllowShortIfStatementsOnASingleLine": "false",
+\ "AllowShortLoopsOnASingleLine": "false",
+\ "IndentWidth": 4,
+\ "BreakBeforeBraces": "Custom",
+\ "BraceWrapping": {
+\   "AfterClass": "true",
+\   "AfterEnum": "true",
+\   "AfterFunction": "true",
+\   "AfterStruct": "true",
+\   "AfterNamespace": "true",
+\   "AfterUnion": "true",
+\ }
+\}
+
 
 " vim-marching settings
 let g:marching_clang_command = "/usr/bin/clang"
