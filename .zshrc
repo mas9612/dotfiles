@@ -56,6 +56,7 @@ alias wifirestart='networksetup -setairportpower en0 off;networksetup -setairpor
 alias wifioff='networksetup -setairportpower en0 off'
 alias wifion='networksetup -setairportpower en0 on'
 
+alias gcloud='docker run -it --rm -v $(pwd):/gcloud -v ~/.config:/root/.config -v ~/.ssh:/root/.ssh gcloud'
 
 autoload -Uz colors
 colors
