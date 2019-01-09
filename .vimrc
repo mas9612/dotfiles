@@ -64,7 +64,7 @@ Plug 'maximbaz/lightline-ale'
 Plug 'tomtom/tcomment_vim'
 Plug 'szw/vim-tags'
 Plug 'majutsushi/tagbar'
-Plug 'rhysd/vim-clang-format', {'for': ['c', 'cpp']}
+Plug 'rhysd/vim-clang-format', {'for': ['c', 'cpp', 'proto']}
 Plug 'vim-jp/vim-cpp', {'for': ['c', 'cpp']}
 Plug 'osyo-manga/vim-marching', {'for': ['c', 'cpp']}
 Plug 'kchmck/vim-coffee-script', {'for': 'coffee'}
@@ -280,15 +280,6 @@ let g:clang_format#style_options = {
 \ "AllowShortIfStatementsOnASingleLine": "false",
 \ "AllowShortLoopsOnASingleLine": "false",
 \ "IndentWidth": 4,
-\ "BreakBeforeBraces": "Custom",
-\ "BraceWrapping": {
-\   "AfterClass": "true",
-\   "AfterEnum": "true",
-\   "AfterFunction": "true",
-\   "AfterStruct": "true",
-\   "AfterNamespace": "true",
-\   "AfterUnion": "true",
-\ }
 \}
 
 
@@ -521,6 +512,7 @@ let g:monster#completion#rcodetools#backend = "async_rct_complete"
 
 
 " vim-go settings
+let g:go_fmt_command = "goimports"
 let g:go_snippet_engine = "neosnippet"
 let g:go_template_autocreate = 0
 let g:go_highlight_operators = 1
@@ -528,7 +520,7 @@ let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
 let g:go_highlight_types = 1
 let g:go_highlight_build_constraints = 1
-let g:go_metalinter_autosave = 1
+" let g:go_metalinter_autosave = 1
 
 
 " fzf.vim settings
