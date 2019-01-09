@@ -16,6 +16,7 @@ brew "git"
 brew "gnu-sed"
 brew "go"
 brew "grep", args: ["with-default-names"]
+brew "jq"
 brew "kubernetes-cli"
 brew "mas"
 brew "neovim"
