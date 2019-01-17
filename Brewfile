@@ -20,6 +20,7 @@ brew "grep", args: ["with-default-names"]
 brew "hping"
 brew "jq"
 brew "kubernetes-cli"
+brew "kubernetes-helm"
 brew "mas"
 brew "neovim"
 brew "nkf"
