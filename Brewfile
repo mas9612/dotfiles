@@ -18,6 +18,7 @@ brew "gnu-sed"
 brew "go"
 brew "grep", args: ["with-default-names"]
 brew "hping"
+brew "hugo"
 brew "jq"
 brew "kubernetes-cli"
 brew "kubernetes-helm"
