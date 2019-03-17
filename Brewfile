@@ -15,6 +15,7 @@ brew "gcc"
 brew "gdb", args: ["with-python"]
 brew "git"
 brew "gnu-sed"
+brew "gnuplot"
 brew "go"
 brew "grep", args: ["with-default-names"]
 brew "hping"
