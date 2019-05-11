@@ -20,6 +20,7 @@ brew "gnuplot"
 brew "go"
 brew "gpg"
 brew "grep", args: ["with-default-names"]
+brew "grpcurl"
 brew "hping"
 brew "hugo"
 brew "istioctl"
