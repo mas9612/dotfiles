@@ -15,3 +15,5 @@ export TEXINPUTS=.:~/github/tex_styles/:~/Dropbox/mendeley/bibliography/:
 export PYTHONPATH=/usr/local/var/pyenv/versions/${CURRENT_PYTHON_VERSION}/bin:/usr/local/var/pyenv/versions/${CURRENT_PYTHON_VERSION}/lib/python37.zip:/usr/local/var/pyenv/versions/${CURRENT_PYTHON_VERSION}/lib/python3.7:/usr/local/var/pyenv/versions/${CURRENT_PYTHON_VERSION}/lib/python3.7/lib-dynload:/usr/local/var/pyenv/versions/${CURRENT_PYTHON_VERSION}/lib/python3.7/site-packages:/usr/local/var/pyenv/versions/${CURRENT_PYTHON_VERSION}/lib/python3.7/site-packages/IPython/extensions:$PYTHONPATH
 
 export FONTCONFIG_PATH=/opt/X11/lib/X11/fontconfig
+
+export LANG=en_US.UTF-8
