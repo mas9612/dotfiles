@@ -11,8 +11,16 @@ export PYENV_ROOT=/usr/local/var/pyenv
 if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
 
 export EDITOR=vim           # set editor to vim
-export LANG=ja_JP.UTF-8     # set char code to utf-8
+export LANG=en_US.UTF-8     # set char code to utf-8
 bindkey -e                  # set keybind to emacs-mode
+
+# for Docker Engine API
+export DOCKER_API_VERSION=`docker version | awk '/API version/ {print $3}' | head -1`
+
+# latex style file, bibliography file
+export TEXINPUTS=.:~/github/tex_styles/:~/Dropbox/mendeley/bibliography/:
+
+export PYTHONPATH=/usr/local/var/pyenv/versions/${CURRENT_PYTHON_VERSION}/bin:/usr/local/var/pyenv/versions/${CURRENT_PYTHON_VERSION}/lib/python37.zip:/usr/local/var/pyenv/versions/${CURRENT_PYTHON_VERSION}/lib/python3.7:/usr/local/var/pyenv/versions/${CURRENT_PYTHON_VERSION}/lib/python3.7/lib-dynload:/usr/local/var/pyenv/versions/${CURRENT_PYTHON_VERSION}/lib/python3.7/site-packages:/usr/local/var/pyenv/versions/${CURRENT_PYTHON_VERSION}/lib/python3.7/site-packages/IPython/extensions:$PYTHONPATH
 
 HISTFILE=~/.zsh_history     # file saved history
 HISTSIZE=10000              # number of history saved to memory
