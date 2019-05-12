@@ -56,6 +56,8 @@ alias wifirestart='networksetup -setairportpower en0 off;networksetup -setairpor
 alias wifioff='networksetup -setairportpower en0 off'
 alias wifion='networksetup -setairportpower en0 on'
 
+alias suspend_vms="vboxmanage list runningvms | cut -d'\"' -f2 | xargs -I{} vboxmanage controlvm {} savestate"
+
 alias gcloud='docker run -it --rm -v $(pwd):/gcloud -v ~/.config:/root/.config -v ~/.ssh:/root/.ssh gcloud'
 
 autoload -Uz colors
