@@ -80,6 +80,7 @@ cask "sublime-text"
 cask "the-unarchiver"
 cask "transmission"
 cask "virtualbox"
+cask "vmware-fusion"
 cask "vmware-remote-console"
 cask "wireshark"
 
