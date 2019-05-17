@@ -149,6 +149,8 @@ set wildignore+=*.o,*.pyc
 set visualbell t_vb=
 set noerrorbells
 
+set foldmethod=marker
+
 " set spell
 " set spelllang=en,cjk
 " augroup vimrc
