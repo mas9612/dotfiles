@@ -300,7 +300,9 @@ let g:marching#default_config = {
 \}
 
 
-let g:python3_host_prog = '/usr/local/var/pyenv/shims/python'
+if s:uname == 'Darwin'
+  let g:python3_host_prog = '/usr/local/var/pyenv/shims/python'
+endif
 let g:deoplete#enable_at_startup = 1
 
 " call deoplete#custom#option({
