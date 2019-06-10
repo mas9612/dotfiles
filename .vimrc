@@ -80,6 +80,7 @@ Plug 'hashivim/vim-terraform', {'for': 'terraform'}
 Plug 'vim-scripts/Align'
 Plug 'tpope/vim-abolish'
 Plug 'nathanaelkane/vim-indent-guides'
+Plug 'glidenote/memolist.vim'
 call plug#end()
 
 
@@ -561,6 +562,13 @@ let g:indent_guides_exclude_filetypes = ['help', 'nerdtree', 'gitv']
 let g:indent_guides_auto_colors = 0
 autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=NONE     ctermbg=NONE
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=darkgrey ctermbg=8
+
+
+" memolist.vim
+let g:memolist_path = "~/Dropbox/memolist"
+let g:memolist_memo_date = "%Y-%m-%d %H:%M"
+let g:memolist_fzf = 1
+let g:memolist_memo_suffix = "md"
 
 
 filetype plugin indent on
