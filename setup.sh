@@ -40,6 +40,8 @@ ln -sf $PWD/.vim ~/.vim
 echo "Installing Vim plugins..."
 vim -c ':PlugInstall | :qa'
 
+pip install -r ./pip_requirements.txt
+
 if [ "`uname -s`" = "Darwin" -a ! -d "/Applications/Adobe Creative Cloud" ]; then
     open "/usr/local/Caskroom/adobe-creative-cloud/latest/Creative Cloud Installer.app"
 fi
