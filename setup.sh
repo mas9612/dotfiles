@@ -18,12 +18,12 @@ if [ "`uname -s`" = "Darwin" ]; then
     brew cleanup
 fi
 
-./install_go_pkgs.sh
-
 if [ ! -d "$HOME/.tmux/plugins/tpm" ]; then
     echo "Installing tmux plugin manager..."
     git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 fi
+
+./go_tools.sh
 
 echo "Linking config files..."
 ln -sf $PWD/.zshenv ~/.zshenv
