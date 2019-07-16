@@ -1,2 +1,2 @@
-# for syntastic in Vim
 flake8>=3.7.7
+autopep8>=1.4.4

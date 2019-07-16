@@ -50,6 +50,7 @@ Plug 'hail2u/vim-css3-syntax', {'for': 'css'}
 Plug 'pangloss/vim-javascript', {'for': 'js'}
 Plug 'jiangmiao/auto-pairs'
 Plug 'davidhalter/jedi-vim', {'for': 'python'}
+Plug 'tell-k/vim-autopep8', {'for': 'python'}
 Plug 'hynek/vim-python-pep8-indent', {'for': 'python'}
 " Plug 'lambdalisue/vim-pyenv', {'for': 'python'}
 Plug 'w0rp/ale'
@@ -325,6 +326,11 @@ augroup jedi
 augroup END
 let g:jedi#completions_enabled = 0
 let g:jedi#auto_vim_configuration = 0
+
+
+" vim-autopep8
+let g:autopep8_on_save = 1
+let g:autopep8_disable_show_diff=1
 
 
 " NERDTree Settings
