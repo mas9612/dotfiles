@@ -23,6 +23,8 @@ endfunction
 
 call IncludePath(expand("~/.pyenv/shims"))
 
+let s:uname = system('uname -s')
+
 call plug#begin('~/.vim/plugged')
 if has('nvim')
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -74,14 +76,19 @@ Plug 'mas9612/md2tex.vim', {'for': 'markdown'}
 Plug 'chrisbra/vim-diff-enhanced'
 Plug 'osyo-manga/vim-monster', {'for': 'ruby'}
 Plug 'fatih/vim-go', {'for': 'go', 'do': ':GoInstallBinaries'}
-Plug '/usr/local/opt/fzf'
-Plug 'junegunn/fzf.vim'
 Plug 'mileszs/ack.vim'
 Plug 'hashivim/vim-terraform', {'for': 'terraform'}
 Plug 'vim-scripts/Align'
 Plug 'tpope/vim-abolish'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'glidenote/memolist.vim'
+
+if s:uname == 'Darwin'
+  Plug '/usr/local/opt/fzf'
+else
+  Plug '~/.fzf'
+endif
+Plug 'junegunn/fzf.vim'
 call plug#end()
 
 
@@ -94,7 +101,6 @@ augroup END
 
 " iterm
 if has('unix')
-  let s:uname = system('uname -s')
   if s:uname == 'Darwin'
     let g:hybrid_use_iTerm_colors = 1
   endif
@@ -304,6 +310,8 @@ let g:marching#default_config = {
 
 if s:uname == 'Darwin'
   let g:python3_host_prog = '/usr/local/var/pyenv/shims/python'
+else
+  let g:python3_host_prog = '/usr/bin/python3'
 endif
 let g:deoplete#enable_at_startup = 1
 
