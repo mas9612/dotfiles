@@ -3,7 +3,7 @@
 timedatectl set-timezone Asia/Tokyo
 
 apt-get -y update && apt-get -y upgrade
-apt-get -y install open-vm-tools-desktop
+apt-get -y install open-vm-tools-desktop realtek-rtl88xxau-dkms
 shutdown -r now
 
 if [ ! -d "$HOME/.tmux/plugins/tpm" ]; then
