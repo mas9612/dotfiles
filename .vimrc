@@ -23,7 +23,7 @@ endfunction
 
 call IncludePath(expand("~/.pyenv/shims"))
 
-let s:uname = system('uname -s')
+let s:uname = substitute(system('uname -s'), '\n\+$', '', '')
 
 call plug#begin('~/.vim/plugged')
 if has('nvim')
