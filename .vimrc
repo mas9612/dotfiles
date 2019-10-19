@@ -9,12 +9,7 @@ if has('vim_starting')
 endif
 
 function! IncludePath(path)
-  " define delimiter depends on platform
-  if has('win16') || has('win32') || has('win64')
-    let delimiter = ";"
-  else
-    let delimiter = ":"
-  endif
+  let delimiter = ":"
   let pathlist = split($PATH, delimiter)
   if isdirectory(a:path) && index(pathlist, a:path) == -1
     let $PATH=a:path.delimiter.$PATH
@@ -26,13 +21,9 @@ call IncludePath(expand("~/.pyenv/shims"))
 let s:uname = substitute(system('uname -s'), '\n\+$', '', '')
 
 call plug#begin('~/.vim/plugged')
-if has('nvim')
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-else
-  Plug 'Shougo/deoplete.nvim'
-  Plug 'roxma/nvim-yarp'
-  Plug 'roxma/vim-hug-neovim-rpc'
-endif
+Plug 'Shougo/deoplete.nvim'
+Plug 'roxma/nvim-yarp'
+Plug 'roxma/vim-hug-neovim-rpc'
 Plug 'zchee/deoplete-go', {'do': 'make'}
 Plug 'zchee/deoplete-jedi', {'for': 'python'}
 Plug 'Shougo/deoplete-clangx', {'for': ['c', 'cpp']}
@@ -54,8 +45,7 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'davidhalter/jedi-vim', {'for': 'python'}
 Plug 'tell-k/vim-autopep8', {'for': 'python'}
 Plug 'hynek/vim-python-pep8-indent', {'for': 'python'}
-" Plug 'lambdalisue/vim-pyenv', {'for': 'python'}
-Plug 'w0rp/ale'
+Plug 'dense-analysis/ale'
 Plug 'lervag/vimtex', {'for': 'tex'}
 Plug 'Shougo/vimproc.vim', {'do': 'make'}
 Plug 'Konfekt/FastFold'
@@ -69,7 +59,6 @@ Plug 'szw/vim-tags'
 Plug 'majutsushi/tagbar'
 Plug 'rhysd/vim-clang-format', {'for': ['c', 'cpp', 'proto']}
 Plug 'vim-jp/vim-cpp', {'for': ['c', 'cpp']}
-Plug 'osyo-manga/vim-marching', {'for': ['c', 'cpp']}
 Plug 'kchmck/vim-coffee-script', {'for': 'coffee'}
 Plug 'mas9612/mdslide.vim', {'for': 'markdown'}
 Plug 'mas9612/md2tex.vim', {'for': 'markdown'}
@@ -100,10 +89,8 @@ augroup vimrc
 augroup END
 
 " iterm
-if has('unix')
-  if s:uname == 'Darwin'
-    let g:hybrid_use_iTerm_colors = 1
-  endif
+if s:uname == 'Darwin'
+  let g:hybrid_use_iTerm_colors = 1
 endif
 
 " set colorscheme to hybrid
@@ -159,19 +146,9 @@ set noerrorbells
 
 set foldmethod=marker
 
-" set spell
-" set spelllang=en,cjk
-" augroup vimrc
-"   autocmd FileType gitv,git,godoc setlocal nospell
-" augroup END
-
 set tags=./tags;
 
 set diffopt=filler,vertical
-
-
-iabbrev #b /**************************************************
-iabbrev #e **************************************************/
 
 
 let g:netrw_silent = 1
@@ -189,8 +166,6 @@ nnoremap gj j
 nnoremap gk k
 
 nnoremap Q gq
-
-nnoremap c. q:k<CR>
 
 nnoremap <silent><ESC><ESC> :nohlsearch<CR>
 
@@ -218,8 +193,6 @@ cnoremap <C-n> <Down>
 
 
 " set filetype
-autocmd vimrc BufNewFile,BufRead *.html setlocal filetype=htmldjango
-autocmd vimrc BufNewFile,BufRead *.coffee setlocal filetype=coffee
 autocmd vimrc BufNewFile,BufRead *.tf setlocal filetype=terraform
 
 
@@ -245,7 +218,6 @@ autocmd vimrc BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe
 
 
 " Template File setting
-autocmd vimrc BufNewFile *.ly 0read $HOME/.vim/template/lilypond.txt
 autocmd vimrc BufNewFile *.py 0read $HOME/.vim/template/python.txt
 
 
@@ -315,14 +287,6 @@ else
 endif
 let g:deoplete#enable_at_startup = 1
 
-" call deoplete#custom#option({
-" \ 'keyword_patterns', {
-" \   '_': '\h\w*',
-" \   'go': '\h\w*\.\w*',
-" \   'cpp': '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*',
-" \   'python': '\%([^. \t]\.\|^\s*@\|^\s*from\s.\+import \|^\s*from \|^\s*import \)\w*',
-" \ },
-" })
 inoremap <expr><C-g> deoplete#undo_completion()
 
 
@@ -433,23 +397,6 @@ let g:lightline = {
   \   'linter_ok': 'ok',
   \ },
 \}
-" \ 'separator': { 'left': "\u2b80", 'right': "\u2b82" },
-" \ 'subseparator': { 'left': "\u2b81", 'right': "\u2b83" },
-" \ 'component': {
-" \   'lineinfo': '%3l:%2v:%2{GetCurrentChars()}',
-" \ },
-
-" function! GetCurrentChars()
-"   let l:mode = mode()
-"
-"   if l:mode == "v" || l:mode == "v" || l:mode == "\<C-v>"
-"     let l:chars = wordcount().visual_chars
-"   else
-"     let l:chars = wordcount().cursor_chars
-"   endif
-"
-"   return l:chars
-" endfunction
 
 function! LightLineModified()
   if &filetype == "help"
@@ -493,11 +440,15 @@ let g:ale_sign_column_always = 1
 let g:ale_lint_on_save = 1
 let g:ale_lint_on_text_changed = 0
 let g:ale_open_list = 1
+let g:ale_linters = {
+\ 'go': ['golangci-lint'],
+\}
 let g:ale_pattern_options = {
 \ '\.md$': {
 \   'ale_enabled': 0,
 \ },
 \}
+let g:ale_cpp_clang_options = "-std=c++17 -Wall"
 
 augroup CloseLoclistWindowGroup
   autocmd!
@@ -539,7 +490,6 @@ let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
 let g:go_highlight_types = 1
 let g:go_highlight_build_constraints = 1
-" let g:go_metalinter_autosave = 1
 
 
 " fzf.vim settings
