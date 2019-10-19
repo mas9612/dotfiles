@@ -265,21 +265,6 @@ let g:clang_format#style_options = {
 \}
 
 
-" vim-marching settings
-let g:marching_clang_command = "/usr/bin/clang"
-let g:marching#clang_command#options = {
-\   "cpp" : " -std=c++11 -stdlib=libc++"
-\}
-let g:marching_include_paths = [
-\   "/usr/include",
-\   "/usr/local/include",
-\]
-let g:marching_enable_neocomplete = 1
-let g:marching#default_config = {
-\ " ignore_pat": '^_\D'
-\}
-
-
 if s:uname == 'Darwin'
   let g:python3_host_prog = '/usr/local/var/pyenv/shims/python'
 else
