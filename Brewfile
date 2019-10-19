@@ -41,7 +41,6 @@ brew "the_silver_searcher"
 brew "tmux"
 brew "tree"
 brew "vim"
-brew "zsh"
 brew "zsh-completions"
 
 cask "1password6"
