@@ -23,8 +23,6 @@ if [ ! -d "$HOME/.tmux/plugins/tpm" ]; then
     git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 fi
 
-./go_tools.sh
-
 echo "Linking config files..."
 ln -sf $PWD/.zshenv ~/.zshenv
 ln -sf $PWD/.zshrc ~/.zshrc
@@ -34,7 +32,6 @@ ln -sf $PWD/.ctags ~/.ctags
 ln -sf $PWD/.latexmkrc ~/.latexmkrc
 
 ln -sf $PWD/.vimrc ~/.vimrc
-ln -sf $PWD/.gvimrc ~/.gvimrc
 ln -sf $PWD/.vim ~/.vim
 
 echo "Installing Vim plugins..."
