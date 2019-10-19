@@ -21,54 +21,48 @@ call IncludePath(expand("~/.pyenv/shims"))
 let s:uname = substitute(system('uname -s'), '\n\+$', '', '')
 
 call plug#begin('~/.vim/plugged')
+Plug 'junegunn/vim-plug', {'dir': '~/.vim/plugged/vim-plug/autoload'}
+
+" completion/lint related
 Plug 'Shougo/deoplete.nvim'
 Plug 'roxma/nvim-yarp'
 Plug 'roxma/vim-hug-neovim-rpc'
 Plug 'zchee/deoplete-go', {'do': 'make'}
 Plug 'zchee/deoplete-jedi', {'for': 'python'}
 Plug 'Shougo/deoplete-clangx', {'for': ['c', 'cpp']}
-
-Plug 'junegunn/vim-plug', {'dir': '~/.vim/plugged/vim-plug/autoload'}
-Plug 'Shougo/neosnippet.vim'
-Plug 'Shougo/neosnippet-snippets'
-Plug 'tpope/vim-fugitive'
-Plug 'airblade/vim-gitgutter'
-Plug 'gregsexton/gitv', {'on': ['Gitv']}
-Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
-Plug 'mattn/emmet-vim', {'for': ['htmldjango', 'html', 'css', 'php']}
-Plug 'thinca/vim-quickrun', {'on': 'QuickRun'}
-Plug 'tpope/vim-surround'
+Plug 'dense-analysis/ale'
+Plug 'mattn/emmet-vim', {'for': ['html', 'css', 'php']}
 Plug 'othree/html5.vim', {'for': 'html'}
 Plug 'hail2u/vim-css3-syntax', {'for': 'css'}
 Plug 'pangloss/vim-javascript', {'for': 'js'}
-Plug 'jiangmiao/auto-pairs'
 Plug 'davidhalter/jedi-vim', {'for': 'python'}
 Plug 'tell-k/vim-autopep8', {'for': 'python'}
 Plug 'hynek/vim-python-pep8-indent', {'for': 'python'}
-Plug 'dense-analysis/ale'
 Plug 'lervag/vimtex', {'for': 'tex'}
-Plug 'Shougo/vimproc.vim', {'do': 'make'}
-Plug 'Konfekt/FastFold'
-Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown', {'for': 'markdown'}
-Plug 'kannokanno/previm', {'for': 'markdown'}
-Plug 'itchyny/lightline.vim'
-Plug 'maximbaz/lightline-ale'
-Plug 'tomtom/tcomment_vim'
-Plug 'szw/vim-tags'
-Plug 'majutsushi/tagbar'
 Plug 'rhysd/vim-clang-format', {'for': ['c', 'cpp', 'proto']}
 Plug 'vim-jp/vim-cpp', {'for': ['c', 'cpp']}
-Plug 'kchmck/vim-coffee-script', {'for': 'coffee'}
-Plug 'mas9612/mdslide.vim', {'for': 'markdown'}
-Plug 'mas9612/md2tex.vim', {'for': 'markdown'}
-Plug 'chrisbra/vim-diff-enhanced'
-Plug 'osyo-manga/vim-monster', {'for': 'ruby'}
 Plug 'fatih/vim-go', {'for': 'go', 'do': ':GoInstallBinaries'}
-Plug 'mileszs/ack.vim'
 Plug 'hashivim/vim-terraform', {'for': 'terraform'}
+
+Plug 'Shougo/neosnippet.vim'
+Plug 'Shougo/neosnippet-snippets'
+
+" git related
+Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
+Plug 'gregsexton/gitv', {'on': ['Gitv']}
+
+" others
+Plug 'Konfekt/FastFold'
+Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
+Plug 'tpope/vim-surround'
+Plug 'jiangmiao/auto-pairs'
+Plug 'itchyny/lightline.vim'
+Plug 'maximbaz/lightline-ale'
+Plug 'kannokanno/previm', {'for': 'markdown'}
+Plug 'tomtom/tcomment_vim'
 Plug 'vim-scripts/Align'
-Plug 'tpope/vim-abolish'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'glidenote/memolist.vim'
 
@@ -148,7 +142,7 @@ set foldmethod=marker
 
 set tags=./tags;
 
-set diffopt=filler,vertical
+set diffopt=internal,filler,vertical,algorithm:patience
 
 
 let g:netrw_silent = 1
@@ -312,37 +306,6 @@ let g:tex_conceal=''
 nmap <silent><Leader>c <plug>(vimtex-compile)
 
 
-" vim-quickrun settings
-let g:quickrun_config = {
-  \ "_" : {
-  \   'runner': 'vimproc',
-  \   'runner/vimproc/updatetime': 50,
-  \   'outputter' : 'error',
-  \   'outputter/error/success' : 'buffer',
-  \   'outputter/error/error' : 'quickfix',
-  \   'outputter/buffer/split' : ':botright 10sp',
-  \   'outputter/buffer/close_on_empty' : 1,
-  \},
-  \ "cpp" : {
-  \   'command': 'c++',
-  \   'cmdopt': '--std=c++11 -stdlib=libc++',
-  \   'exec': '%c %o %s',
-  \   'args': '',
-  \}
-\}
-
-" Press <C-c> to stop QuickRun
-" define custom function to compatible with lazy load
-function! s:quickrun_is_running()
-  if exists('*quickrun#is_running()')
-    return quickrun#is_running()
-  else
-    return 0
-  end
-endfunction
-nnoremap <expr><silent> <C-c> <SID>quickrun_is_running() ? quickrun#sweep_sessions() : "\<C-c>"
-
-
 " PreVim Settings
 let g:previm_open_cmd = 'open -a "Google Chrome"'
 
@@ -441,25 +404,9 @@ augroup CloseLoclistWindowGroup
 augroup END
 
 
-" vim-tags settings
-let g:vim_tags_auto_generate = 1
-let g:vim_tags_ctags_binary = "/usr/local/bin/ctags"
-
-
 " vim-markdown settings
 let g:vim_markdown_folding_disabled = 1
 let g:vim_markdown_math = 1
-
-
-" vim-diff-enhanced settings
-" started In Diff-Mode set diffexpr
-if &diff
-  let &diffexpr='EnhancedDiff#Diff("git diff", "--diff-algorithm=histogram")'
-endif
-
-
-" mdslide.vim settings
-let g:mdslide_open_browser_cmd = 'open -a Google\ Chrome'
 
 
 " vim-monster settings
@@ -492,12 +439,6 @@ let g:fzf_layout = { 'down': '~30%' }
 nnoremap <silent><C-p> :FzfFiles<CR>
 nnoremap <silent><Leader>b :FzfBuffers<CR>
 nnoremap <silent><Leader>t :FzfTags<CR>
-
-
-" ack.vim settings
-if executable('ag')
-  let g:ackprg = 'ag --vimgrep'
-endif
 
 
 " vim-terraform settings
