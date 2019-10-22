@@ -1,52 +1,50 @@
 " vim-plug manages itself
-if has('vim_starting')
+if has('vim_starting')  " {{{
   set runtimepath+=~/.vim/plugged/vim-plug
   if !isdirectory(expand('~/.vim/plugged/vim-plug'))
     echo 'Installing vim-plug...'
     call system('mkdir -p ~/.vim/plugged/vim-plug')
     call system('git clone https://github.com/junegunn/vim-plug.git ~/.vim/plugged/vim-plug/autoload')
   endif
-endif
+endif   " }}}
 
-function! IncludePath(path)
+function! IncludePath(path)   " {{{
   let delimiter = ":"
   let pathlist = split($PATH, delimiter)
   if isdirectory(a:path) && index(pathlist, a:path) == -1
     let $PATH=a:path.delimiter.$PATH
   endif
-endfunction
+endfunction   " }}}
 
 call IncludePath(expand("~/.pyenv/shims"))
 
 let s:uname = substitute(system('uname -s'), '\n\+$', '', '')
 
-call plug#begin('~/.vim/plugged')
+
+call plug#begin('~/.vim/plugged')   " {{{
 Plug 'junegunn/vim-plug', {'dir': '~/.vim/plugged/vim-plug/autoload'}
 
 " completion/lint related
 Plug 'Shougo/deoplete.nvim'
 Plug 'roxma/nvim-yarp'
 Plug 'roxma/vim-hug-neovim-rpc'
-Plug 'zchee/deoplete-go', {'do': 'make'}
-Plug 'zchee/deoplete-jedi', {'for': 'python'}
+Plug 'deoplete-plugins/deoplete-go', {'do': 'make', 'for': 'go'}
+Plug 'deoplete-plugins/deoplete-jedi', {'for': 'python'}
 Plug 'Shougo/deoplete-clangx', {'for': ['c', 'cpp']}
 Plug 'dense-analysis/ale'
+
+Plug 'davidhalter/jedi-vim', {'for': 'python'}
+Plug 'tell-k/vim-autopep8', {'for': 'python'}
+Plug 'hynek/vim-python-pep8-indent', {'for': 'python'}
+Plug 'fatih/vim-go', {'for': 'go', 'do': ':GoInstallBinaries'}
+Plug 'rhysd/vim-clang-format', {'for': ['c', 'cpp', 'proto']}
+Plug 'hashivim/vim-terraform', {'for': 'terraform'}
+Plug 'lervag/vimtex', {'for': 'tex'}
+Plug 'plasticboy/vim-markdown', {'for': 'markdown'}
 Plug 'mattn/emmet-vim', {'for': ['html', 'css', 'php']}
 Plug 'othree/html5.vim', {'for': 'html'}
 Plug 'hail2u/vim-css3-syntax', {'for': 'css'}
 Plug 'pangloss/vim-javascript', {'for': 'js'}
-Plug 'davidhalter/jedi-vim', {'for': 'python'}
-Plug 'tell-k/vim-autopep8', {'for': 'python'}
-Plug 'hynek/vim-python-pep8-indent', {'for': 'python'}
-Plug 'lervag/vimtex', {'for': 'tex'}
-Plug 'plasticboy/vim-markdown', {'for': 'markdown'}
-Plug 'rhysd/vim-clang-format', {'for': ['c', 'cpp', 'proto']}
-Plug 'vim-jp/vim-cpp', {'for': ['c', 'cpp']}
-Plug 'fatih/vim-go', {'for': 'go', 'do': ':GoInstallBinaries'}
-Plug 'hashivim/vim-terraform', {'for': 'terraform'}
-
-Plug 'Shougo/neosnippet.vim'
-Plug 'Shougo/neosnippet-snippets'
 
 " git related
 Plug 'tpope/vim-fugitive'
@@ -72,7 +70,7 @@ else
   Plug '~/.fzf'
 endif
 Plug 'junegunn/fzf.vim'
-call plug#end()
+call plug#end()   " }}}
 
 
 filetype off
@@ -87,7 +85,7 @@ if s:uname == 'Darwin'
   let g:hybrid_use_iTerm_colors = 1
 endif
 
-" set colorscheme to hybrid
+" set options {{{
 if !filereadable(expand('~/.vim/colors/hybrid.vim'))
   call mkdir('~/.vim/colors', 'p')
   call system('curl -fLo ~/.vim/colors/hybrid.vim https://raw.githubusercontent.com/mas9612/dotfiles/master/vim/colors/hybrid.vim')
@@ -140,15 +138,14 @@ set noerrorbells
 
 set foldmethod=marker
 
-set tags=./tags;
-
 set diffopt=internal,filler,vertical,algorithm:patience
+" }}}
 
 
 let g:netrw_silent = 1
 
 
-" remap
+" remap {{{
 nnoremap : ;
 vnoremap : ;
 nnoremap ; :
@@ -158,8 +155,6 @@ nnoremap j gj
 nnoremap k gk
 nnoremap gj j
 nnoremap gk k
-
-nnoremap Q gq
 
 nnoremap <silent><ESC><ESC> :nohlsearch<CR>
 
@@ -184,6 +179,7 @@ cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
 " use up/down key in command line mode
 cnoremap <C-p> <Up>
 cnoremap <C-n> <Down>
+" }}}
 
 
 " set filetype
@@ -195,7 +191,7 @@ autocmd vimrc QuickFixCmdPost make,*grep* :cwindow
 
 
 " remove trailing space
-function! s:remove_space()
+function! s:remove_space()  " {{{
   if &filetype ==? 'markdown'
     return
   endif
@@ -204,18 +200,14 @@ function! s:remove_space()
   %s/\s\+$//ge
   call setpos(".", cursor)
   unlet cursor
-endfunction
+endfunction   " }}}
 autocmd vimrc BufWritePre * call <SID>remove_space()
 
 " restore cursor position
 autocmd vimrc BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
 
 
-" Template File setting
-autocmd vimrc BufNewFile *.py 0read $HOME/.vim/template/python.txt
-
-
-" binary editing mode
+" binary editing mode {{{
 function! s:edit_binary()
   if &binary
     silent %!xxd -g 1
@@ -246,9 +238,45 @@ augroup Binary
   autocmd BufWritePre * call <SID>pre_save_binary()
   autocmd BufWritePost * call <SID>after_save_binary()
 augroup END
+" }}}
 
 
-" plugin
+" deoplete
+if s:uname == 'Darwin'
+  let g:python3_host_prog = '/usr/local/var/pyenv/shims/python'
+else
+  let g:python3_host_prog = '/usr/bin/python3'
+endif
+
+inoremap <expr><C-g> deoplete#undo_completion()
+let g:deoplete#enable_at_startup = 1
+let g:deoplete#sources#go#gocode_binary = $GOPATH.'/bin/gocode'
+let g:deoplete#sources#go#sort_class = ['package', 'func', 'type', 'var', 'const']
+let g:deoplete#sources#go#cgo = 1
+let g:deoplete#sources#go#builtin_objects = 1
+let g:deoplete#sources#go#fallback_to_source = 1
+
+
+" ale settings
+let g:ale_sign_column_always = 1
+let g:ale_lint_on_save = 1
+let g:ale_lint_on_text_changed = 0
+let g:ale_open_list = 1
+let g:ale_linters = {
+\ 'go': ['gopls', 'staticcheck'],
+\}
+let g:ale_pattern_options = {
+\ '\.md$': {
+\   'ale_enabled': 0,
+\ },
+\}
+let g:ale_cpp_clang_options = "-std=c++17 -Wall"
+
+augroup CloseLoclistWindowGroup
+  autocmd!
+  autocmd QuitPre * if empty(&buftype) | lclose | endif
+augroup END
+
 
 " vim-clang-format
 let g:clang_format#auto_format = 1
@@ -257,16 +285,6 @@ let g:clang_format#style_options = {
 \ "AllowShortLoopsOnASingleLine": "false",
 \ "IndentWidth": 4,
 \}
-
-
-if s:uname == 'Darwin'
-  let g:python3_host_prog = '/usr/local/var/pyenv/shims/python'
-else
-  let g:python3_host_prog = '/usr/bin/python3'
-endif
-let g:deoplete#enable_at_startup = 1
-
-inoremap <expr><C-g> deoplete#undo_completion()
 
 
 " jedi-vim
@@ -383,27 +401,6 @@ function! LightLineFilename()
 endfunction
 
 
-" ale settings
-let g:ale_sign_column_always = 1
-let g:ale_lint_on_save = 1
-let g:ale_lint_on_text_changed = 0
-let g:ale_open_list = 1
-let g:ale_linters = {
-\ 'go': ['golangci-lint'],
-\}
-let g:ale_pattern_options = {
-\ '\.md$': {
-\   'ale_enabled': 0,
-\ },
-\}
-let g:ale_cpp_clang_options = "-std=c++17 -Wall"
-
-augroup CloseLoclistWindowGroup
-  autocmd!
-  autocmd QuitPre * if empty(&buftype) | lclose | endif
-augroup END
-
-
 " vim-markdown settings
 let g:vim_markdown_folding_disabled = 1
 let g:vim_markdown_math = 1
@@ -414,8 +411,9 @@ let g:monster#completion#rcodetools#backend = "async_rct_complete"
 
 
 " vim-go settings
+let g:go_code_completion_enabled = 0
 let g:go_fmt_command = "goimports"
-let g:go_snippet_engine = "neosnippet"
+let g:go_fmt_fail_silently = 1
 let g:go_template_autocreate = 0
 let g:go_highlight_operators = 1
 let g:go_highlight_functions = 1
