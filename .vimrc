@@ -41,6 +41,7 @@ Plug 'rhysd/vim-clang-format', {'for': ['c', 'cpp', 'proto']}
 Plug 'hashivim/vim-terraform', {'for': 'terraform'}
 Plug 'lervag/vimtex', {'for': 'tex'}
 Plug 'plasticboy/vim-markdown', {'for': 'markdown'}
+Plug 'godlygeek/tabular', {'for': 'markdown'}
 Plug 'mattn/emmet-vim', {'for': ['html', 'css', 'php']}
 Plug 'othree/html5.vim', {'for': 'html'}
 Plug 'hail2u/vim-css3-syntax', {'for': 'css'}
