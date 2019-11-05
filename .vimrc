@@ -185,6 +185,7 @@ cnoremap <C-n> <Down>
 
 " set filetype
 autocmd vimrc BufNewFile,BufRead *.tf setlocal filetype=terraform
+autocmd vimrc BufNewFile,BufRead *.tex setlocal filetype=tex
 
 
 " open QuickFix window automatically after use make or grep commands
