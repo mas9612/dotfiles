@@ -79,3 +79,4 @@ mas "Airmail 3", id: 918858936
 mas "Bitdefender Virus Scanner", id: 500154009
 mas "LINE", id: 539883307
 mas "Xcode", id: 497799835
+mas "Bear", id: 1091189122
