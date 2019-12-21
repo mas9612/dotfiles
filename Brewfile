@@ -76,7 +76,8 @@ cask "vmware-remote-console"
 cask "wireshark"
 
 mas "Airmail 3", id: 918858936
+mas "Bear", id: 1091189122
 mas "Bitdefender Virus Scanner", id: 500154009
 mas "LINE", id: 539883307
+mas "MARKETSPEED", id: 946680495
 mas "Xcode", id: 497799835
-mas "Bear", id: 1091189122
