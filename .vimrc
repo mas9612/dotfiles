@@ -102,6 +102,9 @@ set nobackup
 set noswapfile
 set hidden
 
+set splitbelow
+set splitright
+
 set ttimeoutlen=100
 
 set path& path+=./**
