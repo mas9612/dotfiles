@@ -46,6 +46,7 @@ Plug 'mattn/emmet-vim', {'for': ['html', 'css', 'php']}
 Plug 'othree/html5.vim', {'for': 'html'}
 Plug 'hail2u/vim-css3-syntax', {'for': 'css'}
 Plug 'pangloss/vim-javascript', {'for': 'js'}
+Plug 'vobornik/vim-mql4', {'for': 'mql4'}
 
 " git related
 Plug 'tpope/vim-fugitive'
