@@ -16,7 +16,7 @@ function! IncludePath(path)   " {{{
   endif
 endfunction   " }}}
 
-call IncludePath(expand("~/.pyenv/shims"))
+call IncludePath(expand("/usr/local/var/pyenv/shims"))
 
 let s:uname = substitute(system('uname -s'), '\n\+$', '', '')
 
