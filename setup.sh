@@ -2,7 +2,9 @@
 
 cd `dirname $0`
 
-if [ "`uname -s`" = "Darwin" ]; then
+os=`uname -s`
+
+if [ "${os}" = "Darwin" ]; then
     echo "Checking whether Homebrew is installed..."
     which brew
     if [ $? = 0 ]; then
@@ -39,8 +41,11 @@ vim -c ':PlugInstall | :qa'
 
 pip install -r ./pip_requirements.txt
 
-if [ "`uname -s`" = "Darwin" -a ! -d "/Applications/Adobe Creative Cloud" ]; then
-    open "/usr/local/Caskroom/adobe-creative-cloud/latest/Creative Cloud Installer.app"
+if [ "${os}" = "Darwin" ]; then
+    curl -LO https://raw.githubusercontent.com/mbadolato/iTerm2-Color-Schemes/master/schemes/Hybrid.itermcolors
+    echo "iTerm2 color scheme \"Hybrid\" has been downloaded."
+    echo "If you want to use it, load and enable it on iTerm2."
+    echo "Path:" $PWD/Hybrid.itermcolors
 fi
 
 echo "Completed!"
