@@ -14,11 +14,6 @@ export EDITOR=vim           # set editor to vim
 export LANG=en_US.UTF-8     # set char code to utf-8
 bindkey -e                  # set keybind to emacs-mode
 
-# latex style file, bibliography file
-export TEXINPUTS=.:~/github/tex_styles/:~/Dropbox/mendeley/bibliography/:
-
-export PYTHONPATH=/usr/local/var/pyenv/versions/${CURRENT_PYTHON_VERSION}/bin:/usr/local/var/pyenv/versions/${CURRENT_PYTHON_VERSION}/lib/python37.zip:/usr/local/var/pyenv/versions/${CURRENT_PYTHON_VERSION}/lib/python3.7:/usr/local/var/pyenv/versions/${CURRENT_PYTHON_VERSION}/lib/python3.7/lib-dynload:/usr/local/var/pyenv/versions/${CURRENT_PYTHON_VERSION}/lib/python3.7/site-packages:/usr/local/var/pyenv/versions/${CURRENT_PYTHON_VERSION}/lib/python3.7/site-packages/IPython/extensions:$PYTHONPATH
-
 HISTFILE=~/.zsh_history     # file saved history
 HISTSIZE=10000              # number of history saved to memory
 SAVEHIST=10000              # saved history amount
@@ -77,7 +72,6 @@ zstyle ':vcs_info:*' actionformats '[%b|%a]'
 precmd() {
     vcs_info
     RPROMPT="${vcs_info_msg_0_}"
-    export CURRENT_PYTHON_VERSION="$(cat $(pyenv root)/version)"
 }
 
 PROMPT="%F{cyan}[%n:%~]%f "
