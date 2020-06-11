@@ -41,9 +41,9 @@ setopt prompt_subst
 
 alias ...='cd ../..'
 alias ....='cd ../../..'
-alias l='ls'
-alias ll='ls -l'
-alias la='ls -la'
+alias l='ls -G'
+alias ll='ls -lG'
+alias la='ls -laG'
 
 alias grep='ggrep --color=auto'
 
