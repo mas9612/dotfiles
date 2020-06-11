@@ -35,6 +35,16 @@ ln -sf $PWD/.ctags ~/.ctags
 ln -sf $PWD/.vimrc ~/.vimrc
 ln -sf $PWD/.vim ~/.vim
 
+echo "compiling Vim..."
+git clone https://github.com/vim/vim.git
+prev_dir=`pwd`
+cd vim
+./configure --prefix=/opt --enable-fail-if-missing --enable-luainterp=yes --enable-python3interp=yes --with-lua-prefix=/usr/local   &&  \
+    make && sudo make install
+# for now, stripped binary won't work properly. So copy unstrupped binary to bin directory
+sudo cp src/vim /opt/bin/vim
+cd ${prev_dir}
+
 echo "Installing Vim plugins..."
 vim -c ':PlugInstall | :qa'
 
