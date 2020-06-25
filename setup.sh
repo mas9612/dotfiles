@@ -28,6 +28,7 @@ fi
 echo "Linking config files..."
 ln -sf $PWD/.zshenv ~/.zshenv
 ln -sf $PWD/.zshrc ~/.zshrc
+ln -sf $PWD/.zsh_autoload_funcs ~/.zsh_autoload_funcs
 ln -sf $PWD/.tmux.conf ~/.tmux.conf
 
 ln -sf $PWD/.ctags ~/.ctags

@@ -84,22 +84,7 @@ PROMPT='$(kube_ps1)'$PROMPT
 source <(kubectl completion zsh)
 
 # convert Markdown to PDF with pandoc
-md2pdf () {
-    input=$1
-    output="`echo $input | rev | cut -f2- -d. | rev`.pdf"
-
-    pandoc --pdf-engine=lualatex    \
-        -V documentclass=ltjarticle \
-        -V geometry:a4paper         \
-        -V geometry:top=3.5cm       \
-        -V geometry:left=3cm        \
-        -V geometry:right=3cm       \
-        -V geometry:bottom=3cm      \
-        --listings                  \
-        -f markdown -t latex        \
-        -o $output                  \
-        $input
-}
+autoload -Uz md2pdf
 
 
 ##################################################
