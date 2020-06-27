@@ -418,7 +418,8 @@ let g:monster#completion#rcodetools#backend = "async_rct_complete"
 
 " vim-go settings
 let g:go_code_completion_enabled = 0
-let g:go_fmt_command = "goimports"
+let g:go_fmt_autosave = 1
+let g:go_imports_autosave = 1
 let g:go_fmt_fail_silently = 1
 let g:go_template_autocreate = 0
 let g:go_highlight_operators = 1
@@ -426,6 +427,10 @@ let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
 let g:go_highlight_types = 1
 let g:go_highlight_build_constraints = 1
+let g:go_metalinter_autosave = 1
+let g:go_auto_type_info = 1
+let g:go_jump_to_error = 0
+let g:go_doc_popup_window = 1
 
 
 " fzf.vim settings
