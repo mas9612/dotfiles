@@ -37,13 +37,26 @@ ln -sf $PWD/.vimrc ~/.vimrc
 ln -sf $PWD/.vim ~/.vim
 
 echo "compiling Vim..."
-git clone https://github.com/vim/vim.git
+if [ ! -d "$HOME/vim" ]; then
+    git clone https://github.com/vim/vim.git $HOME/vim
+fi
 prev_dir=`pwd`
-cd vim
-./configure --prefix=/opt --enable-fail-if-missing --enable-luainterp=yes --enable-python3interp=yes --with-lua-prefix=/usr/local   &&  \
-    make && sudo make install
-# for now, stripped binary won't work properly. So copy unstrupped binary to bin directory
-sudo cp src/vim /opt/bin/vim
+cd ~/vim
+git pull origin master
+latest_tag=$(git tag -l | tail -1)
+echo "Vim version ${latest_tag} will be installed."
+git checkout ${latest_tag}
+
+if [ "${os}" = "Darwin" ]; then
+    ./configure --prefix=/opt --enable-fail-if-missing --enable-luainterp=yes --enable-python3interp=yes --with-lua-prefix=/usr/local
+        --enable-multibyte  &&  \
+        make && sudo make install
+    # for now, stripped binary won't work properly on mac. So copy unstripped binary to bin directory
+    sudo cp src/vim /opt/bin/vim
+else
+    ./configure --prefix=/opt --enable-fail-if-missing --enable-luainterp=yes --enable-python3interp=yes --enable-multibyte &&  \
+        make && sudo make install
+fi
 cd ${prev_dir}
 
 echo "Installing Vim plugins..."
