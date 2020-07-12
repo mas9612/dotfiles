@@ -1,5 +1,8 @@
 #!/bin/bash
 
+set -eu
+set -o pipefail
+
 cd `dirname $0`
 
 os=`uname -s`
@@ -28,13 +31,13 @@ fi
 echo "Linking config files..."
 ln -sf $PWD/.zshenv ~/.zshenv
 ln -sf $PWD/.zshrc ~/.zshrc
-ln -sf $PWD/.zsh_autoload_funcs ~/.zsh_autoload_funcs
+rm -f ~/.zsh_autoload_funcs && ln -sf $PWD/.zsh_autoload_funcs ~/.zsh_autoload_funcs
 ln -sf $PWD/.tmux.conf ~/.tmux.conf
 
 ln -sf $PWD/.ctags ~/.ctags
 
 ln -sf $PWD/.vimrc ~/.vimrc
-ln -sf $PWD/.vim ~/.vim
+rm -f ~/.vim && ln -sf $PWD/.vim ~/.vim
 
 echo "compiling Vim..."
 if [ ! -d "$HOME/vim" ]; then
@@ -42,20 +45,26 @@ if [ ! -d "$HOME/vim" ]; then
 fi
 prev_dir=`pwd`
 cd ~/vim
-git pull origin master
+git checkout master && git pull origin master
 latest_tag=$(git tag -l | tail -1)
-echo "Vim version ${latest_tag} will be installed."
-git checkout ${latest_tag}
+vim_major_version=$(vim --version | awk '/VIM - Vi IMproved/ {print $5}')
+vim_patch_version=$(vim --version | awk '/Included patches/ {print $3}' | cut -d'-' -f2)
+installed_vim_version=${major_version}.${patch_version}
 
-if [ "${os}" = "Darwin" ]; then
-    ./configure --prefix=/opt --enable-fail-if-missing --enable-luainterp=yes --enable-python3interp=yes --with-lua-prefix=/usr/local
-        --enable-multibyte  &&  \
-        make && sudo make install
-    # for now, stripped binary won't work properly on mac. So copy unstripped binary to bin directory
-    sudo cp src/vim /opt/bin/vim
-else
-    ./configure --prefix=/opt --enable-fail-if-missing --enable-luainterp=yes --enable-python3interp=yes --enable-multibyte &&  \
-        make && sudo make install
+if [ "${installed_vim_version}" != "${latest_tag}" ]; then
+    echo "Vim version ${latest_tag} will be installed."
+    git checkout ${latest_tag}
+
+    if [ "${os}" = "Darwin" ]; then
+        ./configure --prefix=/opt --enable-fail-if-missing --enable-luainterp=yes --enable-python3interp=yes --with-lua-prefix=/usr/local   \
+            --enable-multibyte  &&  \
+            make && sudo make install
+        # for now, stripped binary won't work properly on mac. So copy unstripped binary to bin directory
+        sudo cp src/vim /opt/bin/vim
+    else
+        ./configure --prefix=/opt --enable-fail-if-missing --enable-luainterp=yes --enable-python3interp=yes --enable-multibyte &&  \
+            make && sudo make install
+    fi
 fi
 cd ${prev_dir}
 
