@@ -24,28 +24,19 @@ let s:uname = substitute(system('uname -s'), '\n\+$', '', '')
 call plug#begin('~/.vim/plugged')   " {{{
 Plug 'junegunn/vim-plug', {'dir': '~/.vim/plugged/vim-plug/autoload'}
 
-" completion/lint related
-Plug 'Shougo/deoplete.nvim'
-Plug 'roxma/nvim-yarp'
-Plug 'roxma/vim-hug-neovim-rpc'
-Plug 'deoplete-plugins/deoplete-go', {'do': 'make', 'for': 'go'}
-Plug 'deoplete-plugins/deoplete-jedi', {'for': 'python'}
-Plug 'Shougo/deoplete-clangx', {'for': ['c', 'cpp']}
+Plug 'prabirshrestha/async.vim'
+Plug 'prabirshrestha/asyncomplete.vim'
+Plug 'prabirshrestha/asyncomplete-lsp.vim'
+Plug 'prabirshrestha/vim-lsp'
+Plug 'mattn/vim-lsp-settings'
+Plug 'mattn/vim-goimports'
 Plug 'dense-analysis/ale'
 
-Plug 'davidhalter/jedi-vim', {'for': 'python'}
-Plug 'tell-k/vim-autopep8', {'for': 'python'}
-Plug 'hynek/vim-python-pep8-indent', {'for': 'python'}
-Plug 'fatih/vim-go', {'for': 'go', 'do': ':GoInstallBinaries'}
-Plug 'rhysd/vim-clang-format', {'for': ['c', 'cpp', 'proto']}
-Plug 'hashivim/vim-terraform', {'for': 'terraform'}
-Plug 'lervag/vimtex', {'for': 'tex'}
+" Plug 'tell-k/vim-autopep8', {'for': 'python'}
+" Plug 'hynek/vim-python-pep8-indent', {'for': 'python'}
+" Plug 'rhysd/vim-clang-format', {'for': ['c', 'cpp', 'proto']}
 Plug 'plasticboy/vim-markdown', {'for': 'markdown'}
 Plug 'godlygeek/tabular', {'for': 'markdown'}
-Plug 'mattn/emmet-vim', {'for': ['html', 'css', 'php']}
-Plug 'othree/html5.vim', {'for': 'html'}
-Plug 'hail2u/vim-css3-syntax', {'for': 'css'}
-Plug 'pangloss/vim-javascript', {'for': 'js'}
 Plug 'vobornik/vim-mql4', {'for': 'mql4'}
 
 " git related
@@ -64,7 +55,6 @@ Plug 'kannokanno/previm', {'for': 'markdown'}
 Plug 'tomtom/tcomment_vim'
 Plug 'vim-scripts/Align'
 Plug 'nathanaelkane/vim-indent-guides'
-Plug 'glidenote/memolist.vim'
 
 if s:uname == 'Darwin'
   Plug '/usr/local/opt/fzf'
@@ -187,11 +177,6 @@ cnoremap <C-n> <Down>
 " }}}
 
 
-" set filetype
-autocmd vimrc BufNewFile,BufRead *.tf setlocal filetype=terraform
-autocmd vimrc BufNewFile,BufRead *.tex setlocal filetype=tex
-
-
 " open QuickFix window automatically after use make or grep commands
 autocmd vimrc QuickFixCmdPost make,*grep* :cwindow
 
@@ -247,20 +232,8 @@ augroup END
 " }}}
 
 
-" deoplete
-if s:uname == 'Darwin'
-  let g:python3_host_prog = '/usr/local/var/pyenv/shims/python'
-else
-  let g:python3_host_prog = '/usr/bin/python3'
-endif
-
-inoremap <expr><C-g> deoplete#undo_completion()
-let g:deoplete#enable_at_startup = 1
-let g:deoplete#sources#go#gocode_binary = $GOPATH.'/bin/gocode'
-let g:deoplete#sources#go#sort_class = ['package', 'func', 'type', 'var', 'const']
-let g:deoplete#sources#go#cgo = 1
-let g:deoplete#sources#go#builtin_objects = 1
-let g:deoplete#sources#go#fallback_to_source = 1
+" lsp related
+nmap <C-]> <plug>(lsp-definition)
 
 
 " ale settings
@@ -293,16 +266,6 @@ let g:clang_format#style_options = {
 \}
 
 
-" jedi-vim
-augroup jedi
-    autocmd!
-    autocmd FileType python setlocal completeopt-=preview
-    autocmd FileType python setlocal omnifunc=jedi#completions
-augroup END
-let g:jedi#completions_enabled = 0
-let g:jedi#auto_vim_configuration = 0
-
-
 " vim-autopep8
 let g:autopep8_on_save = 1
 let g:autopep8_disable_show_diff=1
@@ -311,23 +274,6 @@ let g:autopep8_disable_show_diff=1
 " NERDTree Settings
 nnoremap <silent><Leader>e :NERDTreeToggle<CR>
 autocmd vimrc bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-
-
-" emmet-vim Settings
-let g:user_emmet_settings = {
-    \ 'variables': {
-    \ 'lang' : 'ja'
-    \ }
-\}
-
-
-" Tex settings
-let g:vimtex_compiler_progname = 'latexmk'
-let g:vimtex_compiler_latexmk = {'options': []}
-let g:vimtex_compiler_latexmk_engines = {'_' : '-pdfdvi'}
-" disable the conceal function
-let g:tex_conceal=''
-nmap <silent><Leader>c <plug>(vimtex-compile)
 
 
 " PreVim Settings
@@ -351,7 +297,7 @@ let g:lightline = {
   \   ],
   \ },
   \ 'component_function': {
-  \   'fugitive': 'LightLineFugitive',
+  \   'fugitive': 'FugitiveHead',
   \   'readonly': 'LightLineReadonly',
   \   'modified': 'LightLineModified',
   \   'filename': 'LightLineFilename'
@@ -412,27 +358,6 @@ let g:vim_markdown_folding_disabled = 1
 let g:vim_markdown_math = 1
 
 
-" vim-monster settings
-let g:monster#completion#rcodetools#backend = "async_rct_complete"
-
-
-" vim-go settings
-let g:go_code_completion_enabled = 0
-let g:go_fmt_autosave = 1
-let g:go_imports_autosave = 1
-let g:go_fmt_fail_silently = 1
-let g:go_template_autocreate = 0
-let g:go_highlight_operators = 1
-let g:go_highlight_functions = 1
-let g:go_highlight_methods = 1
-let g:go_highlight_types = 1
-let g:go_highlight_build_constraints = 1
-let g:go_metalinter_autosave = 1
-let g:go_auto_type_info = 1
-let g:go_jump_to_error = 0
-let g:go_doc_popup_window = 1
-
-
 " fzf.vim settings
 let g:fzf_command_prefix = 'Fzf'
 
@@ -450,10 +375,6 @@ nnoremap <silent><Leader>b :FzfBuffers<CR>
 nnoremap <silent><Leader>t :FzfTags<CR>
 
 
-" vim-terraform settings
-let g:terraform_fmt_on_save = 1
-
-
 " vim-indent-guides settings
 let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_exclude_filetypes = ['help', 'nerdtree', 'gitv']
@@ -461,13 +382,6 @@ let g:indent_guides_exclude_filetypes = ['help', 'nerdtree', 'gitv']
 let g:indent_guides_auto_colors = 0
 autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=NONE     ctermbg=NONE
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=darkgrey ctermbg=8
-
-
-" memolist.vim
-let g:memolist_path = "~/Dropbox/memolist"
-let g:memolist_memo_date = "%Y-%m-%d %H:%M"
-let g:memolist_fzf = 1
-let g:memolist_memo_suffix = "md"
 
 
 filetype plugin indent on
