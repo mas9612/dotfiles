@@ -234,6 +234,7 @@ augroup END
 
 " lsp related
 nmap <C-]> <plug>(lsp-definition)
+let g:lsp_diagnostics_enabled = 0
 
 
 " ale settings
