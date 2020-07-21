@@ -119,7 +119,7 @@ set number
 set showmatch
 set matchpairs& matchpairs+=<:>
 set grepformat=%f:%l:%m,%f,%l%m,%f\ \ %l%m
-set grepprg=grep\ -nH
+set grepprg=grep\ -snHIER
 set ruler
 set cursorline
 set lazyredraw
