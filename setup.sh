@@ -59,8 +59,6 @@ if [ "${installed_vim_version}" != "${latest_tag}" ]; then
         ./configure --prefix=/opt --enable-fail-if-missing --enable-luainterp=yes --enable-python3interp=yes --with-lua-prefix=/usr/local   \
             --enable-multibyte  &&  \
             make && sudo make install
-        # for now, stripped binary won't work properly on mac. So copy unstripped binary to bin directory
-        sudo cp src/vim /opt/bin/vim
     else
         ./configure --prefix=/opt --enable-fail-if-missing --enable-luainterp=yes --enable-python3interp=yes --enable-multibyte &&  \
             make && sudo make install

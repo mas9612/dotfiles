@@ -9,6 +9,7 @@ brew "clang-format"
 brew "ctags"
 brew "etcd"
 brew "evans"
+brew "ffmpeg"
 brew "fzf"
 brew "gcc"
 brew "git"
@@ -19,6 +20,7 @@ brew "grep"
 brew "grpcurl"
 brew "hping"
 brew "hugo"
+brew "imagemagick"
 brew "jq"
 brew "kube-ps1"
 brew "kubernetes-cli"
@@ -55,12 +57,12 @@ cask "station"
 cask "sublime-text"
 cask "the-unarchiver"
 cask "transmission"
-cask "wireshark"
 cask "vlc"
+cask "zoomus"
 
-mas "Airmail 3", id: 918858936
 mas "Bear", id: 1091189122
 mas "BetterSnapTool", id: 417375580
 mas "Bitdefender Virus Scanner", id: 500154009
 mas "LINE", id: 539883307
+mas "Spark –Email App by Readdle", id: 1176895641
 mas "Xcode", id: 497799835
