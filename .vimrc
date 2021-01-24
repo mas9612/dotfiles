@@ -38,6 +38,7 @@ Plug 'dense-analysis/ale'
 Plug 'plasticboy/vim-markdown', {'for': 'markdown'}
 Plug 'godlygeek/tabular', {'for': 'markdown'}
 Plug 'sebdah/vim-delve', {'for': 'go'}
+Plug 'aklt/plantuml-syntax', {'for': 'plantuml'}
 
 " git related
 Plug 'tpope/vim-fugitive'
