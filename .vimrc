@@ -37,7 +37,7 @@ Plug 'dense-analysis/ale'
 " Plug 'rhysd/vim-clang-format', {'for': ['c', 'cpp', 'proto']}
 Plug 'plasticboy/vim-markdown', {'for': 'markdown'}
 Plug 'godlygeek/tabular', {'for': 'markdown'}
-Plug 'vobornik/vim-mql4', {'for': 'mql4'}
+Plug 'sebdah/vim-delve', {'for': 'go'}
 
 " git related
 Plug 'tpope/vim-fugitive'
