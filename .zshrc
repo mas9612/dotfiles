@@ -134,3 +134,5 @@ complete -o nospace -C /usr/local/bin/terraform terraform
 
 source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
 source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
+
+export PATH="/usr/local/opt/openjdk/bin:$PATH"
