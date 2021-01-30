@@ -38,6 +38,7 @@ brew "terraform"
 brew "the_silver_searcher"
 brew "tmux"
 brew "tree"
+brew "webp"
 brew "zsh-completions"
 
 cask "1password6"

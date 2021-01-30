@@ -136,3 +136,12 @@ source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.in
 source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
 
 export PATH="/usr/local/opt/openjdk/bin:$PATH"
+
+to-webp() {
+    set -e
+    for file in $(ls image-base/); do
+        echo "convert" image-base/${file} "->" webp/${file%png}webp;
+        cwebp image-base/${file} -o webp/${file%png}webp
+    done
+    set +e
+}
