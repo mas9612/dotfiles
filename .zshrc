@@ -140,8 +140,14 @@ export PATH="/usr/local/opt/openjdk/bin:$PATH"
 to-webp() {
     set -e
     for file in $(ls image-base/); do
-        echo "convert" image-base/${file} "->" webp/${file%png}webp;
-        cwebp image-base/${file} -o webp/${file%png}webp
+        from="image-base/${file}"
+        to="webp/${file}.webp"
+        if [ -e "${to}" ]; then
+            echo "${to} exists. skip."
+        else
+            echo "convert" ${from} "->" ${to}
+            cwebp ${from} -o ${to}
+        fi
     done
     set +e
 }
