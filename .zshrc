@@ -14,6 +14,9 @@ fpath=(~/.zsh_autoload_funcs(N-/) /usr/local/share/zsh-completions(N-/) ~/.zsh/c
 path=(${path} $HOME/go/bin(N-/))
 export GOPATH=$HOME/go
 
+path=(/usr/local/opt/openjdk/bin(N-/) ${path})
+export PATH
+
 export FONTCONFIG_PATH=/opt/X11/lib/X11/fontconfig
 
 # pyenv
@@ -141,11 +144,6 @@ fh() {
 
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /usr/local/bin/terraform terraform
-
-source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
-source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
-
-export PATH="/usr/local/opt/openjdk/bin:$PATH"
 
 to-webp() {
     set -e
