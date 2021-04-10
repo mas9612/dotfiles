@@ -56,9 +56,11 @@ Plug 'kannokanno/previm', {'for': 'markdown'}
 Plug 'tomtom/tcomment_vim'
 Plug 'vim-scripts/Align'
 Plug 'nathanaelkane/vim-indent-guides'
+Plug 'aklt/plantuml-syntax', {'for': 'plantuml'}
+Plug 'google/vim-jsonnet'
 
 if s:uname == 'Darwin'
-  Plug '/usr/local/opt/fzf'
+  Plug 'junegunn/fzf', { 'do': { -> fzf#install()  }  }
 else
   Plug '~/.fzf'
 endif
@@ -384,6 +386,13 @@ let g:indent_guides_exclude_filetypes = ['help', 'nerdtree', 'gitv']
 let g:indent_guides_auto_colors = 0
 autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=NONE     ctermbg=NONE
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=darkgrey ctermbg=8
+
+
+" vim-jsonnet
+let g:jsonnet_fmt_on_save = 1
+augroup vimrc
+  autocmd FileType jsonnet set shiftwidth=2 tabstop=2
+augroup END
 
 
 filetype plugin indent on
