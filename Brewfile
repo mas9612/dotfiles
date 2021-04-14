@@ -68,4 +68,5 @@ mas "BetterSnapTool", id: 417375580
 mas "Bitdefender Virus Scanner", id: 500154009
 mas "LINE", id: 539883307
 mas "Spark –Email App by Readdle", id: 1176895641
+mas "Todoist: To-Do List & Tasks", id: 585829637
 mas "Xcode", id: 497799835
