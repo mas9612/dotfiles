@@ -58,6 +58,7 @@ Plug 'vim-scripts/Align'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'aklt/plantuml-syntax', {'for': 'plantuml'}
 Plug 'google/vim-jsonnet'
+Plug 'mattn/emmet-vim', {'for': 'html'}
 
 if s:uname == 'Darwin'
   Plug 'junegunn/fzf', { 'do': { -> fzf#install()  }  }
@@ -393,6 +394,14 @@ let g:jsonnet_fmt_on_save = 1
 augroup vimrc
   autocmd FileType jsonnet set shiftwidth=2 tabstop=2
 augroup END
+
+
+" emmet-vim
+let g:user_emmet_settings = {
+\ 'html' : {
+\   'indentation' : '  '
+\ },
+\}
 
 
 filetype plugin indent on
