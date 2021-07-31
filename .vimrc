@@ -57,8 +57,11 @@ Plug 'tomtom/tcomment_vim'
 Plug 'vim-scripts/Align'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'aklt/plantuml-syntax', {'for': 'plantuml'}
-Plug 'google/vim-jsonnet'
+Plug 'google/vim-jsonnet', {'for': 'jsonnet'}
+Plug 'maxmellon/vim-jsx-pretty', {'for': 'javascript'}
 Plug 'mattn/emmet-vim', {'for': 'html'}
+Plug 'vobornik/vim-mql4', {'for': 'mql4'}
+Plug 'rupurt/vim-mql5', {'for': 'mql5'}
 
 if s:uname == 'Darwin'
   Plug 'junegunn/fzf', { 'do': { -> fzf#install()  }  }

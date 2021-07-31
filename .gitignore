@@ -2,3 +2,5 @@
 .netrwhist
 Hybrid.itermcolors
 Brewfile.lock.json
+
+.DS_Store

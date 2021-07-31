@@ -7,7 +7,7 @@ typeset -U sudo_path
 sudo_path=({/usr/local,/usr,}/sbin(N-/))
 
 # set path
-path=(/opt/bin(N-/) /usr/local/opt/openssl@1.1/bin(N-/) /usr/local/bin(N-/) /usr/local/git/bin(N-/) /usr/local/sbin(N-/) /usr/local/bin/run(N-/) ${path})
+path=(/opt/bin(N-/) /usr/local/opt/openssl@1.1/bin(N-/) /usr/local/bin(N-/) /usr/local/git/bin(N-/) /usr/local/sbin(N-/) /usr/local/bin/run(N-/) /usr/local/opt/mysql-client/bin(N-/) ${path})
 fpath=(~/.zsh_autoload_funcs(N-/) /usr/local/share/zsh-completions(N-/) ~/.zsh/completions(N-/) $fpath)
 
 # golang
