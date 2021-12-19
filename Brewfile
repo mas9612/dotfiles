@@ -1,7 +1,6 @@
 tap "homebrew/bundle"
 tap "homebrew/cask"
 tap "homebrew/cask-versions"
-tap "shyiko/kubesec"
 
 brew "clang-format"
 brew "ctags"
@@ -25,13 +24,11 @@ brew "tmux"
 brew "tree"
 brew "zsh-completions"
 
-cask "1password6"
+cask "1password"
 cask "alfred"
 cask "appcleaner"
 cask "blender"
-cask "docker"
 cask "google-chrome"
-cask "google-cloud-sdk"
 cask "google-drive"
 cask "google-japanese-ime"
 cask "iterm2"
@@ -41,6 +38,7 @@ cask "slack"
 cask "spotify"
 cask "sublime-text"
 cask "the-unarchiver"
+cask "tradingview"
 
 mas "BetterSnapTool", id: 417375580
 mas "Bitdefender Virus Scanner", id: 500154009
