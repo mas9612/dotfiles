@@ -5,10 +5,10 @@
         "revision": "cc9747cd3b28628b6d70789c7c6a97d675dd1ff1"
       },
       "homebrew/cask": {
-        "revision": "6a3ce6df5c122b91574a48066cee00b8e0563809"
+        "revision": "b54bcbf720fdd2be4ce44bd84e829946286e12fe"
       },
       "homebrew/cask-versions": {
-        "revision": "6426a00ad2d7d2acf3bf560b8ef7d4d0dd8c0567"
+        "revision": "c46736897e161b8ec2bca5d2d956f61dca8a22e2"
       },
       "ktr0731/evans": {
         "revision": "c4b0571d08c0b101955bc949f22fe54549fe499e"
@@ -17,7 +17,7 @@
         "revision": "3667b1600528632e37ccefe5837ad329b89c6d79"
       },
       "homebrew/core": {
-        "revision": "33f3f34d9193fb06001361b7dd34630db429406e"
+        "revision": "30c59873e0cecd8ceac1b4841322cf0134a56d22"
       }
     },
     "brew": {
@@ -1712,7 +1712,7 @@
       "ventura": {
         "HOMEBREW_VERSION": "3.6.18",
         "HOMEBREW_PREFIX": "/opt/homebrew",
-        "Homebrew/homebrew-core": "33f3f34d9193fb06001361b7dd34630db429406e",
+        "Homebrew/homebrew-core": "30c59873e0cecd8ceac1b4841322cf0134a56d22",
         "CLT": "14.2.0.0.1.1668646533",
         "Xcode": "14.2",
         "macOS": "13.0"
