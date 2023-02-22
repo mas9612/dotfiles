@@ -39,6 +39,7 @@ Plug 'plasticboy/vim-markdown', {'for': 'markdown'}
 Plug 'godlygeek/tabular', {'for': 'markdown'}
 Plug 'sebdah/vim-delve', {'for': 'go'}
 Plug 'aklt/plantuml-syntax', {'for': 'plantuml'}
+Plug 'Vimjas/vim-python-pep8-indent', {'for': 'python'}
 
 " git related
 Plug 'tpope/vim-fugitive'
@@ -56,19 +57,14 @@ Plug 'kannokanno/previm', {'for': 'markdown'}
 Plug 'tomtom/tcomment_vim'
 Plug 'vim-scripts/Align'
 Plug 'nathanaelkane/vim-indent-guides'
-Plug 'aklt/plantuml-syntax', {'for': 'plantuml'}
-Plug 'google/vim-jsonnet', {'for': 'jsonnet'}
-Plug 'maxmellon/vim-jsx-pretty', {'for': 'javascript'}
-Plug 'mattn/emmet-vim', {'for': 'html'}
-Plug 'vobornik/vim-mql4', {'for': 'mql4'}
-Plug 'rupurt/vim-mql5', {'for': 'mql5'}
+Plug 'google/vim-jsonnet'
 
 if s:uname == 'Darwin'
   Plug 'junegunn/fzf', { 'do': { -> fzf#install()  }  }
 else
   Plug '~/.fzf'
 endif
-Plug 'junegunn/fzf.vim'
+Plug 'junegunn/fzf.vim', { 'do': { -> fzf#install()  }  }
 call plug#end()   " }}}
 
 
@@ -397,14 +393,6 @@ let g:jsonnet_fmt_on_save = 1
 augroup vimrc
   autocmd FileType jsonnet set shiftwidth=2 tabstop=2
 augroup END
-
-
-" emmet-vim
-let g:user_emmet_settings = {
-\ 'html' : {
-\   'indentation' : '  '
-\ },
-\}
 
 
 filetype plugin indent on
