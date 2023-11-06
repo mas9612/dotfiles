@@ -29,7 +29,6 @@ Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'prabirshrestha/asyncomplete-lsp.vim'
 Plug 'prabirshrestha/vim-lsp'
 Plug 'mattn/vim-lsp-settings'
-Plug 'mattn/vim-goimports'
 Plug 'dense-analysis/ale'
 
 " Plug 'tell-k/vim-autopep8', {'for': 'python'}
@@ -74,11 +73,6 @@ filetype plugin indent off
 augroup vimrc
     autocmd!
 augroup END
-
-" iterm
-if s:uname == 'Darwin'
-  let g:hybrid_use_iTerm_colors = 1
-endif
 
 " set options {{{
 if !filereadable(expand('~/.vim/colors/hybrid.vim'))
@@ -199,6 +193,10 @@ autocmd vimrc BufWritePre * call <SID>remove_space()
 
 " restore cursor position
 autocmd vimrc BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
+
+
+" format on save in *.go
+autocmd BufWritePre *.go call execute(['LspCodeActionSync source.organizeImports', 'LspDocumentFormatSync'])
 
 
 " binary editing mode {{{
