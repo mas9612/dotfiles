@@ -1,7 +1,5 @@
 tap "homebrew/bundle"
-tap "homebrew/cask"
 tap "homebrew/cask-versions"
-tap "homebrew/core"
 brew "fzf"
 brew "git"
 brew "gnu-sed"
@@ -23,6 +21,7 @@ cask "google-chrome"
 cask "kindle"
 cask "slack"
 cask "sublime-text"
+cask "visual-studio-code"
 mas "BetterSnapTool", id: 417375580
 mas "Fugit", id: 1577870027
 mas "Todoist", id: 585829637
