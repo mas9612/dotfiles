@@ -1,14 +1,16 @@
-#!/bin/sh
+#!/bin/bash
 
 set -eux
 set -o pipefail
 
-ln -sfh $(pwd)/.vimrc ~/.vimrc
-ln -sfh $(pwd)/.zshrc ~/.zshrc
-ln -sfh $(pwd)/.vim ~/.vim
+script_dir=$(cd $(dirname $0); pwd)
 
-if [ ! -f ~/.zshrc_work ]; then
-  ln -s $(pwd)/.zshrc_work ~/.zshrc_work
+ln -sfh ${script_dir}/.vimrc ~/.vimrc
+ln -sfh ${script_dir}/.zshrc ~/.zshrc
+ln -sfh ${script_dir}/.vim ~/.vim
+
+if [ -f ${script_dir}/.zshrc_work ]; then
+  ln -s ${script_dir}/.zshrc_work ~/.zshrc_work
 fi
 
 if [ "$(uname -s)" = "Darwin" ]; then
