@@ -2,13 +2,13 @@
   "entries": {
     "tap": {
       "homebrew/bundle": {
-        "revision": "e6af4878b9f279ef5e4f517d01fc79829374f49e"
+        "revision": "984473ebdec2b88387aeff280a0ba155f0562ba3"
       },
       "homebrew/cask": {
         "revision": "f915bd24edd8ed0d868d90ae091d9017218714eb"
       },
       "homebrew/cask-versions": {
-        "revision": "3b76267f11d267382fefad69dd9316f161ef0ea5"
+        "revision": "89b5e91cb6f7e3456c218ebba710da2ff97605ba"
       },
       "ktr0731/evans": {
         "revision": "c4b0571d08c0b101955bc949f22fe54549fe499e"
@@ -1698,7 +1698,7 @@
         }
       },
       "blender": {
-        "version": "3.0.1",
+        "version": "4.1.0",
         "options": {
           "full_name": "blender"
         }
@@ -1716,7 +1716,7 @@
         }
       },
       "tradingview": {
-        "version": "1.0.2",
+        "version": "2.7.5",
         "options": {
           "full_name": "tradingview"
         }
@@ -1744,6 +1744,12 @@
         "options": {
           "full_name": "visual-studio-code"
         }
+      },
+      "notion": {
+        "version": "3.3.0",
+        "options": {
+          "full_name": "notion"
+        }
       }
     },
     "mas": {
@@ -1766,7 +1772,7 @@
       },
       "Xcode": {
         "id": "497799835",
-        "version": "15.2"
+        "version": "15.1"
       },
       "BetterSnapTool": {
         "id": "417375580",
@@ -1798,7 +1804,7 @@
       },
       "Todoist": {
         "id": "585829637",
-        "version": "8.9.3"
+        "version": "8.18.0"
       }
     }
   },
@@ -1832,9 +1838,9 @@
         "HOMEBREW_VERSION": "4.2.16",
         "HOMEBREW_PREFIX": "/opt/homebrew",
         "Homebrew/homebrew-core": "api",
-        "CLT": "",
-        "Xcode": "15.2",
-        "macOS": "14.3"
+        "CLT": "15.3.0.0.1.1708646388",
+        "Xcode": "15.1",
+        "macOS": "14.3.1"
       }
     }
   }

@@ -20,10 +20,13 @@ cask "1password-cli"
 cask "alfred"
 cask "anki"
 cask "appcleaner"
+cask "blender"
 cask "google-chrome"
 cask "kindle"
+cask "notion"
 cask "slack"
 cask "sublime-text"
+cask "tradingview"
 cask "visual-studio-code"
 mas "BetterSnapTool", id: 417375580
 mas "Fugit", id: 1577870027
