@@ -74,4 +74,6 @@ export FZF_DEFAULT_OPTS='--height 30% --border --reverse'
 source "/opt/homebrew/opt/kube-ps1/share/kube-ps1.sh"
 PS1='$(kube_ps1)'$PS1
 
-source ${HOME}/.zshrc_work
+if [ -f ~/.zshrc_work ]; then
+    source ~/.zshrc_work
+fi
