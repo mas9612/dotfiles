@@ -11,6 +11,8 @@ brew "kube-ps1"
 brew "kubectl"
 brew "kubectx"
 brew "mas"
+brew "nkf"
+brew "sponge"
 brew "the_silver_searcher"
 brew "tree"
 brew "zsh-completions"
@@ -25,9 +27,9 @@ cask "slack"
 cask "sublime-text"
 cask "tradingview"
 cask "visual-studio-code"
+mas "1Password for Safari", id: 1569813296
 mas "BetterSnapTool", id: 417375580
 mas "Fugit", id: 1577870027
 mas "Kindle", id: 302584613
 mas "Todoist", id: 585829637
 mas "Xcode", id: 497799835
-mas "1Password for Safari", id: 1569813296
