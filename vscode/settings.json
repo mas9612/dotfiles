@@ -1,0 +1,90 @@
+{
+    "workbench.colorTheme": "Default Dark Modern",
+    "editor.renderWhitespace": "all",
+    "vim.normalModeKeyBindingsNonRecursive": [
+        {
+            "before": [
+                ":"
+            ],
+            "after": [
+                ";"
+            ]
+        },
+        {
+            "before": [
+                ";"
+            ],
+            "after": [
+                ":"
+            ]
+        },
+        {
+            "before": [
+                "j"
+            ],
+            "after": [
+                "g",
+                "j"
+            ]
+        },
+        {
+            "before": [
+                "k"
+            ],
+            "after": [
+                "g",
+                "k"
+            ]
+        },
+        {
+            "before": [
+                "g",
+                "j"
+            ],
+            "after": [
+                "j"
+            ]
+        },
+        {
+            "before": [
+                "g",
+                "k"
+            ],
+            "after": [
+                "k"
+            ]
+        }
+    ],
+    "vim.visualModeKeyBindingsNonRecursive": [
+        {
+            "before": [
+                ":"
+            ],
+            "after": [
+                ";"
+            ]
+        },
+        {
+            "before": [
+                ";"
+            ],
+            "after": [
+                ":"
+            ]
+        }
+    ],
+    "vim.hlsearch": true,
+    "git.autofetch": true,
+    "editor.formatOnSave": true,
+    "jsonnet.languageServer.formatting": {},
+    "jsonnet.languageServer.lint": true,
+    "jsonnet.languageServer.pathToBinary": "/usr/local/bin/jsonnet-language-server",
+    "editor.wordWrap": "on",
+    "window.openFoldersInNewWindow": "on",
+    "go.toolsManagement.autoUpdate": true,
+    "vim.handleKeys": {
+        "<C-d>": true,
+        "<C-s>": false,
+        "<C-z>": false
+    }
+}
