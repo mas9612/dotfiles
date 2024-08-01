@@ -75,7 +75,6 @@
     ],
     "vim.hlsearch": true,
     "git.autofetch": true,
-    "editor.formatOnSave": true,
     "jsonnet.languageServer.formatting": {},
     "jsonnet.languageServer.lint": true,
     "jsonnet.languageServer.pathToBinary": "/usr/local/bin/jsonnet-language-server",
@@ -86,5 +85,10 @@
         "<C-d>": true,
         "<C-s>": false,
         "<C-z>": false
-    }
+    },
+    "autopep8.args": [
+        "--max-line-length=200"
+    ],
+    "github.copilot.editor.enableAutoCompletions": true,
+    "editor.formatOnSave": true
 }
