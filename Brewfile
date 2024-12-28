@@ -30,4 +30,5 @@ cask "visual-studio-code"
 mas "1Password for Safari", id: 1569813296
 mas "Fugit", id: 1577870027
 mas "Kindle", id: 302584613
+mas "MindNode Next", id: 6446116532
 mas "Xcode", id: 497799835
