@@ -1,4 +1,5 @@
 tap "homebrew/bundle"
+brew "ffmpeg"
 brew "fzf"
 brew "git"
 brew "gnu-sed"
