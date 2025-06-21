@@ -16,7 +16,6 @@ brew "zsh-completions"
 cask "1password"
 cask "1password-cli"
 cask "alfred"
-cask "anki"
 cask "chatgpt"
 cask "google-chrome"
 cask "notion"
@@ -26,5 +25,4 @@ cask "tradingview"
 cask "visual-studio-code"
 mas "1Password for Safari", id: 1569813296
 mas "Kindle", id: 302584613
-mas "MindNode Next", id: 6446116532
 mas "Xcode", id: 497799835
