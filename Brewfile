@@ -1,4 +1,3 @@
-tap "homebrew/bundle"
 brew "ffmpeg"
 brew "fzf"
 brew "git"
