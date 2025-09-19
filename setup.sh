@@ -15,6 +15,10 @@ fi
 
 if [ "$(uname -s)" = "Darwin" ]; then
   brew bundle
+  # for the second time and beyond
+  brew upgrade
+  brew cleanup
+  brew bundle cleanup -f
 fi
 
 ln -sfh ${script_dir}/vscode/settings.json ~/Library/Application\ Support/Code/User/settings.json
