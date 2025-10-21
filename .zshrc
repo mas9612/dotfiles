@@ -44,7 +44,8 @@ alias ll='ls -lG'
 alias la='ls -laG'
 alias grep='ggrep --color=auto'
 alias sed='gsed'
-alias find='gfind'
+
+export PATH="/opt/homebrew/opt/findutils/libexec/gnubin:$PATH"
 
 autoload -Uz colors
 colors
@@ -58,7 +59,10 @@ export FZF_DEFAULT_OPTS='--height 30% --border --reverse'
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 function ghqlist() {
-    code $(ghq root)/$(ghq list | fzf)
+    project=$(ghq list | fzf)
+    if [ -n "${project}" ]; then
+        code $(ghq root)/${project}
+    fi
 }
 
 source "/opt/homebrew/opt/kube-ps1/share/kube-ps1.sh"
