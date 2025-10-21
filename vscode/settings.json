@@ -75,9 +75,7 @@
     ],
     "vim.hlsearch": true,
     "git.autofetch": true,
-    "jsonnet.languageServer.formatting": {},
     "jsonnet.languageServer.lint": true,
-    "jsonnet.languageServer.pathToBinary": "/usr/local/bin/jsonnet-language-server",
     "editor.wordWrap": "on",
     "window.openFoldersInNewWindow": "on",
     "go.toolsManagement.autoUpdate": true,
@@ -90,5 +88,12 @@
         "--max-line-length=200"
     ],
     "github.copilot.editor.enableAutoCompletions": true,
-    "editor.formatOnSave": true
+    "editor.formatOnPaste": true,
+    "editor.formatOnSave": true,
+    "githubPullRequests.pullBranch": "never",
+    "jsonnet.languageServer.formatting": {
+        "UseImplicitPlus": false
+    },
+    "github.copilot.nextEditSuggestions.enabled": true,
+    "terminal.integrated.stickyScroll.enabled": false
 }
