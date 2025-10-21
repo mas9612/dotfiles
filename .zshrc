@@ -44,6 +44,7 @@ alias ll='ls -lG'
 alias la='ls -laG'
 alias grep='ggrep --color=auto'
 alias sed='gsed'
+alias find='gfind'
 
 autoload -Uz colors
 colors
@@ -55,3 +56,15 @@ export FZF_DEFAULT_COMMAND='ag --hidden --skip-vcs-ignores --ignore .git --ignor
 export FZF_DEFAULT_OPTS='--height 30% --border --reverse'
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+function ghqlist() {
+    code $(ghq root)/$(ghq list | fzf)
+}
+
+source "/opt/homebrew/opt/kube-ps1/share/kube-ps1.sh"
+PS1='$(kube_ps1)'$PS1
+
+source <(kubectl completion zsh)
+
+[ -f ~/.zshrc_work ] && source ~/.zshrc_work
+
