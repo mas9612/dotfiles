@@ -95,5 +95,6 @@
         "UseImplicitPlus": false
     },
     "github.copilot.nextEditSuggestions.enabled": true,
-    "terminal.integrated.stickyScroll.enabled": false
+    "terminal.integrated.stickyScroll.enabled": false,
+    "editor.editContext": false
 }
