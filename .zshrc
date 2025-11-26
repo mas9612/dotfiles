@@ -46,6 +46,7 @@ alias grep='ggrep --color=auto'
 alias sed='gsed'
 
 export PATH="/opt/homebrew/opt/findutils/libexec/gnubin:$PATH"
+export PATH="${AQUA_ROOT_DIR:-${XDG_DATA_HOME:-$HOME/.local/share}/aquaproj-aqua}/bin:$PATH"
 
 autoload -Uz colors
 colors
