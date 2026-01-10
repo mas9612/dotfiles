@@ -31,4 +31,5 @@ else
   for extension in $(cat ${script_dir}/vscode/extensions.txt); do
     code --install-extension ${extension}
   done
+  code --update-extensions
 fi
