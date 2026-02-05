@@ -95,6 +95,11 @@
         "UseImplicitPlus": false
     },
     "github.copilot.nextEditSuggestions.enabled": true,
+    "editor.editContext": false,
+    "terminal.integrated.shellIntegration.showCommandGuide": false,
+    "terminal.integrated.suggest.enabled": false,
     "terminal.integrated.stickyScroll.enabled": false,
-    "editor.editContext": false
+    "chat.viewSessions.orientation": "stacked",
+    "files.insertFinalNewline": true,
+    "files.trimFinalNewlines": true
 }
