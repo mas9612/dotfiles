@@ -1,5 +1,5 @@
 {
-    "workbench.colorTheme": "Default Dark Modern",
+    "workbench.colorTheme": "Dark Modern",
     "editor.renderWhitespace": "all",
     "vim.normalModeKeyBindingsNonRecursive": [
         {
@@ -101,5 +101,6 @@
     "terminal.integrated.stickyScroll.enabled": false,
     "chat.viewSessions.orientation": "stacked",
     "files.insertFinalNewline": true,
-    "files.trimFinalNewlines": true
+    "files.trimFinalNewlines": true,
+    "update.showReleaseNotes": false
 }
