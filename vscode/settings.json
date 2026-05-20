@@ -102,5 +102,6 @@
     "chat.viewSessions.orientation": "stacked",
     "files.insertFinalNewline": true,
     "files.trimFinalNewlines": true,
-    "update.showReleaseNotes": false
+    "update.showReleaseNotes": false,
+    "extensions.autoUpdate": false
 }
