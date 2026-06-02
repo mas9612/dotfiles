@@ -31,5 +31,12 @@ let g:netrw_browse_split = 4
 highlight SpecialKey term=bold ctermfg=241
 highlight NonText term=bold ctermfg=241
 
+function! s:GoImports()
+  let l:cursor_pos = getpos(".")
+  silent! %!goimports
+  call setpos(".", l:cursor_pos)
+endfunction
+command! GoImports call s:GoImports()
+
 syntax enable
 filetype plugin indent on
