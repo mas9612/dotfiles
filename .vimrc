@@ -38,5 +38,31 @@ function! s:GoImports()
 endfunction
 command! GoImports call s:GoImports()
 
+function! s:FzfEdit()
+  function! s:FzfEditCallback(job, status) closure
+    if filereadable(l:tmpfile)
+      let l:selected = readfile(l:tmpfile)
+      if !empty(l:selected)
+        wincmd p
+        execute "edit " . trim(l:selected[0])
+      endif
+      call delete(l:tmpfile)
+    endif
+  endfunction
+
+  let l:tmpfile = tempname()
+  let l:height = max([10, &lines * 20 / 100])
+  execute "botright " . l:height . "new"
+  call term_start("fzf", {
+  \   "curwin": 1,
+  \   "term_finish": "close",
+  \   "out_io": "file",
+  \   "out_name": l:tmpfile,
+  \   "exit_cb": function("s:FzfEditCallback")
+  \ })
+endfunction
+command! FzfEdit call s:FzfEdit()
+nnoremap <C-p> :FzfEdit<CR>
+
 syntax enable
 filetype plugin indent on
