@@ -1,78 +1,8 @@
 {
     "workbench.colorTheme": "Dark Modern",
     "editor.renderWhitespace": "all",
-    "vim.normalModeKeyBindingsNonRecursive": [
-        {
-            "before": [
-                ":"
-            ],
-            "after": [
-                ";"
-            ]
-        },
-        {
-            "before": [
-                ";"
-            ],
-            "after": [
-                ":"
-            ]
-        },
-        {
-            "before": [
-                "j"
-            ],
-            "after": [
-                "g",
-                "j"
-            ]
-        },
-        {
-            "before": [
-                "k"
-            ],
-            "after": [
-                "g",
-                "k"
-            ]
-        },
-        {
-            "before": [
-                "g",
-                "j"
-            ],
-            "after": [
-                "j"
-            ]
-        },
-        {
-            "before": [
-                "g",
-                "k"
-            ],
-            "after": [
-                "k"
-            ]
-        }
-    ],
-    "vim.visualModeKeyBindingsNonRecursive": [
-        {
-            "before": [
-                ":"
-            ],
-            "after": [
-                ";"
-            ]
-        },
-        {
-            "before": [
-                ";"
-            ],
-            "after": [
-                ":"
-            ]
-        }
-    ],
+    "vim.normalModeKeyBindingsNonRecursive": [],
+    "vim.visualModeKeyBindingsNonRecursive": [],
     "vim.hlsearch": true,
     "git.autofetch": true,
     "jsonnet.languageServer.lint": true,
