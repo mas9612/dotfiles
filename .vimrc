@@ -3,6 +3,8 @@ set list
 set listchars=eol:$,tab:>-,trail:-
 set hlsearch
 set incsearch
+set ignorecase
+set smartcase
 
 set noswapfile
 
