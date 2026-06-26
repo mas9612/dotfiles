@@ -1,5 +1,4 @@
 bufbuild.vscode-buf
-github.copilot-chat
 golang.go
 grafana.vscode-jsonnet
 ms-python.autopep8
