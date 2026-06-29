@@ -4,7 +4,6 @@
     "vim.normalModeKeyBindingsNonRecursive": [],
     "vim.visualModeKeyBindingsNonRecursive": [],
     "vim.hlsearch": true,
-    "git.autofetch": true,
     "jsonnet.languageServer.lint": true,
     "editor.wordWrap": "on",
     "window.openFoldersInNewWindow": "on",
