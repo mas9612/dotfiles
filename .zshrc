@@ -56,8 +56,7 @@ PROMPT2="%F{cyan}%_>%f "
 
 export FZF_DEFAULT_COMMAND='ag --hidden --skip-vcs-ignores --ignore .git --ignore __pycache__ -l -g ""'
 export FZF_DEFAULT_OPTS='--height 30% --border --reverse'
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+source <(fzf --zsh)
 
 function ghqlist() {
     project=$(ghq list | fzf)
