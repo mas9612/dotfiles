@@ -1,5 +1,6 @@
 brew "aqua"
 brew "coreutils"
+brew "crane"
 brew "findutils"
 brew "fzf"
 brew "ghq"
